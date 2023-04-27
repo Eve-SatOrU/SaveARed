@@ -1,128 +1,35 @@
 meta(charset="UTF-8")
-meta(http-equiv="X-UA-Compatible", content="IE=edge")
 meta(name="viewport", content="width=device-width,initial-scale=1")
-link(rel="stylesheet", href="css/style.css")
-title banque du sang
-.bg
-  #navbar.navbar
-    a.logo(href="#") Banque du sang
-    .nav-links
-      ul
-        li.active
-          a(href="#Page d\'accueil") Page d'accueil
-        li
-          a(href="=#") Medecin chef
-        li
-          a(href="=#") Donneur
-        li
-          a(href="=#") Receveur
-script(src="index.js")
-section.main
-  div
-    h1 Donner le cadeau de la vie
-    h2 Donation du sang
-    h3
-      | Le sang que vous donnez donne a quelque'un
-      br
-      span une autre chance de vivre
-    .social-icones
-      a(href="#")
-        i.fa-brands.fa-facebook
-      a(href="#")
-        i.fa-solid.fa-envelope
-      a(href="#")
-        i.fa-light.fa-envelope-dot
-section.cards#Pourqoi donner du sang
-  h2.title Pourqoi donner du sang
-  .content
-    .card
-      .info
-        h3.
-          Le don de sang est encadré et sécurisé
-          
-        p Le don de sang est un acte régi par des règles très strictes en matière de sécurité. Le prélèvement est supervisé par du personnel expérimenté. Le matériel utilisé est stérile et à usage unique
-    .card
-      .info
-        h3 Le don de sang est un acte fort de solidarité et de générosité
-        p En donnant son sang, on peut venir en aide à de nombreuses personnes. En effet, un million de patients sont soignés chaque année grâce à cet acte solidaire.
-    .card
-      .info
-        h3 Le sang est un produit irremplaçable
-        p Il n’existe à ce jour aucun traitement ni médicament de synthèse qui soit en mesure de remplacer le sang ainsi que les produits issus du sang. C’est pourquoi des dons de sang sont indispensables pour pouvoir couvrir les besoins.
-section.Annonce#Annonce
-  h1.heading
-    | Annonce
-    span  de collecte
-  .box-container
-    .box
-      img(src="images/blood-g22c70d077_640.jpg", alt)
-      h3 Le 13 mai 2023
-      .star
-        i.fas.fa-star
-        i.fas.fa-star
-        i.fas.fa-star
-        i.fas.fa-star
-        i.fas.fa-star-half-alt
-      p.text kjjgjgf,kh,h,h,^ghog
-    .box
-      img(src="images/blood-g22c70d077_640.jpg", alt)
-      h3 Le 13 juin 2023
-      .star
-        i.fas.fa-star
-        i.fas.fa-star
-        i.fas.fa-star
-        i.fas.fa-star
-        i.fas.fa-star-half-alt
-      p.text kjjgjgf,kh,h,h,^ghok,g
-.full-page
-  .sub-page
-    .navigation-bar
-      .logo
-        a(href="photography.html") Banque du sang
+title home
+link(rel="stylesheet", href="css/index.css")
+link(rel="preconnect", href="https://fonts.googleapis.com")
+link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap", rel="stylesheet")
+link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css")
+.header
+  .container
+    .navbar
       nav
         ul#MenuItems
-          li
-            a(href="#") Medecin chef
-          li
-            a(href="#") Donneur
-          li
-            a(href="#") Receveur
+          li.main-header__item
+            a(href="/", class=(path === '/' ? 'active' : '')) Home
+          li.main-header__item
+            a(href="/about", class=(path === '/about' ? 'active' : '')) About
+          if user
+            li.main-header__item
+              a( href=`/profile/${user.id}`,class=(path === '/profile' ? 'active' : '')) Profile
+            li.main-header__item
+              a(href=`/chat/${user.id}`) chat
+            li.main-header__item
+              a(href="/logout", class=(path === '/logout' ? 'active' : '')) Logout
+
+          else
+            li.main-header__item
+              a(href="/register", class=(path === '/register' ? 'active' : '')) Register
+            li.main-header__item
+              a(href="/login", class=(path === '/login' ? 'active' : '')) Login
+
+      a(href="/donate")
+        img(src="images/cart.png", width="30px", height="30px")
     .row
-      .col-1
-        .form-box
-          .form
-            form.login-form
-              center
-                h1.main-heading Login Form
-              input(type="text", placeholder="user name")
-              input(type="password", placeholder="password")
-              button LOGIN
-              p.message
-                | Veuillez vous changer le mot de passe? 
-                a(href="#") oui
-            form.register-form
-              center
-                h1.main-heading Register Form
-              input(type="text", placeholder="user name")
-              input(type="text", placeholder="email-id")
-              input(type="password", placeholder="password")
-              button REGISTER
-              p.message
-                | Already Registered?
-                a(href="#") Login
-      .col-1
-        p.defination
-          | Login et huytyut
-          br
-          | rghtrhtrhtrhrthtrhj
-          br
-          | erhgrthrdthtrhtrddhe
-          br
-          | -----bvfdgbdfbhdfhbg
-script(src="https://code.jquery.com/jquery-3.2.1.min.js").
-  
-  
-script.
-  
-  $('.message a').click(function(){$('form').animate({height: "toggle",opacity: "toggle"},"slow");});
-  
+    a.btn(href="/register") register now →

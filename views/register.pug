@@ -44,6 +44,9 @@ link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@fortawesome/fontaweso
                 input(type="email", name="email", placeholder="type your email", required)#email
                 label(for="userPassword") userPassword
                 input(type="password", name="userPassword", placeholder="type your password", required)#userPassword
+                select#userType(name="userType")
+                  option(value="donor") Donor
+                  option(value="receiver") Receiver
                 button.btn(type="submit") register
                 a(href="/login") 
                   p Already have an account?

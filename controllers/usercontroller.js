@@ -17,9 +17,9 @@ exports.getRegister = (req, res, next) => {
     });
   };
     exports.postRegister = async (req, res,next) => {
-      const { userName, userPassword,email } = req.body;
+      const { userName, userPassword,email,userType } = req.body;
       try {
-        const user = await User.create({ userName, userPassword,email });
+        const user = await User.create({ userName, userPassword,email ,userType});
         res.redirect('/login');
       } catch (error) {
         res.render('register', { error });
@@ -57,3 +57,11 @@ exports.getRegister = (req, res, next) => {
       req.session.destroy();
       res.redirect('/');
   };
+  
+//reciever 
+exports.getreciever=(req, res,next) => {
+  if (req.session.role === 'receiver') {
+    res.render('receiverForm');
+  } else {
+ res.console.log('hi')  }
+};
