@@ -42,7 +42,10 @@ exports.getRegister = (req, res, next) => {
     //   return res.status(500).send('your password wrong try again!');
     // }
     req.session.user = user;
-    return res.redirect('/');
+    req.session.userName = userName;
+    req.session.userType = 'receiver';
+    res.redirect('/landing');
+    // return res.redirect('/');
   });
     exports.getprofile = async (req, res) => {
       const user = await User.findOne({ where: { id: req.params.id } });
@@ -51,6 +54,7 @@ exports.getRegister = (req, res, next) => {
       }
       res.render('profile', { user }); // passing the user object to the template
     };
+    //logout
     exports.getLogout=async(req, res) => {
     //show that user in the session
     console.log("User in session:", req.session.user);
@@ -59,9 +63,24 @@ exports.getRegister = (req, res, next) => {
   };
   
 //reciever 
-exports.getreciever=(req, res,next) => {
-  if (req.session.role === 'receiver') {
-    res.render('receiverForm');
-  } else {
- res.console.log('hi')  }
+exports.postlanding=(req, res,next) => {
+  console.log('Session:', req.session); // Add this line
+  if (req.session.userType === 'receiver') {
+    res.render('reciever-landing', { userName: req.session.userName });
+  }else{
+    res.redirect('/login');
+  }
 };
+
+exports.getlanding = (req, res, next) => {
+  if (req.session && req.session.userType === 'receiver') {
+    res.render('reciever-landing', {     userType: req.session.userType,
+      userName: req.session.userName
+   });
+  } else {
+    res.redirect('/login');
+  }
+};
+exports.postrecieverform =(req,res,next) =>{
+//to go to the admin
+}

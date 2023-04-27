@@ -1,4 +1,3 @@
-//add api google
 const express = require('express');
 const bodyParser = require('body-parser');
 const sequelize = require('./util/database');
@@ -26,8 +25,8 @@ const errorController = require('./controllers/error.js');
 // app.use(errorController.get404);
  // app.use(express.json());
 
- //sequelize.sync().then(() => {
-sequelize.sync({ force: true }).then(() => {
+ sequelize.sync().then(() => {
+// sequelize.sync({ force: true }).then(() => {
   app.listen(3000, () => {
     console.log('Server started on port 3000');
   });
