@@ -1,0 +1,32 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title login
+link(rel="stylesheet", href="/css/index.css")
+link(rel="preconnect", href="https://fonts.googleapis.com")
+link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap", rel="stylesheet")
+link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css")
+.header
+  .container
+    .navbar
+      nav
+        ul#MenuItems
+          li.main-header__item
+            a(href="/admin/index", class=(path === '/' ? 'active' : '')) Home
+// ----------------account-pabe-------------
+.account-page
+  .container
+    .row
+      .col-2
+        .form-container
+            .form-btn
+            //- span(onclick="login()") Login
+            .title
+              span(onclick="login()") Login
+            form.login-form(action="/admin/login", method="post")
+                label(for="username") username
+                input(type="text", name="username", placeholder="type your username", required)#username
+                label(for="password") userPassword
+                input(type="password", name="password", placeholder="type your password", required)#password
+                button.btn(type="submit") login
+    

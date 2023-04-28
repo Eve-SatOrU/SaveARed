@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const sequelize = require('./util/database');
 const session = require('express-session');
 const User = require('./models/user');
+const fs = require('fs');
+const config = require('./config');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,14 +18,21 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-
+//admin routes
+const adminRoutes = require('./routes/admin');
 const routes = require('./routes/routes');
 app.use('/', routes);
 
 const userController = require('./controllers/usercontroller');
+const adminController =require('./controllers/admin');
 const errorController = require('./controllers/error.js');
+app.use('/admin', adminRoutes);
 // app.use(errorController.get404);
  // app.use(express.json());
+//admin stuff
+
+const adminUsername = config.medcinresposable.username;
+const adminPassword = config.medcinresposable.password;
 
  sequelize.sync().then(() => {
 // sequelize.sync({ force: true }).then(() => {
