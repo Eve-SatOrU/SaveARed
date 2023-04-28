@@ -1,42 +1,95 @@
-meta(charset="UTF-8")
+//- meta(charset="UTF-8")
+//- meta(name="viewport", content="width=device-width,initial-scale=1")
+//- title login
+//- link(rel="stylesheet", href="css/index.css")
+//- link(rel="preconnect", href="https://fonts.googleapis.com")
+//- link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+//- link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap", rel="stylesheet")
+//- link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css")
+//- .header
+//-   .container
+//-     .navbar
+//-       nav
+//-         ul#MenuItems
+//-           li.main-header__item
+//-             a(href="/", class=(path === '/' ? 'active' : '')) Home
+//-           li.main-header__item
+//-             a(href="/about", class=(path === '/about' ? 'active' : '')) About
+//-           if user
+//-             li.main-header__item
+//-               a( href=`/profile/${user.id}`,class=(path === '/profile' ? 'active' : '')) Profile
+//-             li.main-header__item
+//-               a(href=`/chat/${user.id}`) chat
+//-             li.main-header__item
+//-               a(href="/logout", class=(path === '/logout' ? 'active' : '')) Logout
+
+//-           else
+//-             li.main-header__item
+//-               a(href="/register", class=(path === '/register' ? 'active' : '')) Register
+//-             li.main-header__item
+//-               a(href="/login", class=(path === '/login' ? 'active' : '')) Login
+
+//-       a(href="/donate")
+//-         img(src="images/cart.png", width="30px", height="30px")
+//- // ----------------account-pabe-------------
+//- if (userType === 'receiver')
+//-   p Please fill out the form below:
+//-   form(method='POST' action='/receiver-form')
+//-     label(for='name') Name:
+//-     input(type='text' name='name' required)
+//-     label(for='reason') Reason for visit:
+//-     textarea(name='reason' required)
+//-     button(type='submit') Submit
+
+meta(charset="utf-8")
+title Demande de sang
 meta(name="viewport", content="width=device-width,initial-scale=1")
-title login
-link(rel="stylesheet", href="css/index.css")
-link(rel="preconnect", href="https://fonts.googleapis.com")
-link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
-link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap", rel="stylesheet")
-link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css")
-.header
-  .container
-    .navbar
-      nav
-        ul#MenuItems
-          li.main-header__item
-            a(href="/", class=(path === '/' ? 'active' : '')) Home
-          li.main-header__item
-            a(href="/about", class=(path === '/about' ? 'active' : '')) About
-          if user
-            li.main-header__item
-              a( href=`/profile/${user.id}`,class=(path === '/profile' ? 'active' : '')) Profile
-            li.main-header__item
-              a(href=`/chat/${user.id}`) chat
-            li.main-header__item
-              a(href="/logout", class=(path === '/logout' ? 'active' : '')) Logout
+link(rel="stylesheet", href="css/damande de sange.css")
+.container
+  h1.form-title Demande de sang
+  form(action="/admin/form-submission", method="POST")
+    .main-user-info
+      .user-input-box
+        label(for="fullName") Nom et prenom
+        input#fullName(type="text", name="fullName", placeholder="Entrer votre nom et prenom")
+      .user-input-box
+        label(for="address") Adresse
+        input#address(type="text", name="address", placeholder="Entrer l\'adresse")
+      .user-input-box
+        label(for="email") Email
+        input#email(type="email", name="email", placeholder="Entrer l\'email")
+      .user-input-box
+        label(for="phoneNumber") Numero de telephone
+        input#phoneNumber(type="text", name="phoneNumber", placeholder="Entrer le numero de telephone ")
+      .user-input-box
+        label(for="quantity") Quantite du sang
+        input#quantity(type="password", name="quantity", placeholder="Enter quantite du sang  ")
+    .gender-details-box
+      span.gender-title Genre 
+      .gender-category
+        input#male(type="radio", name="gender")
+        label(for="male") Male
+        input#female(type="radio", name="gender")
+        label(for="female") Femelle
+    .blood-details-box
+      span.blood-title Groupe du sang 
+      .blood-groups
+        input#Oplus(type="radio", name="bloodGroup")
+        label(for="Oplus") O+
+        input#Ominus(type="radio", name="bloodGroup")
+        label(for="Ominus") O-
+        input#Aplus(type="radio", name="bloodGroup")
+        label(for="Aplus") A+
+        input#Aminus(type="radio", name="bloodGroup")
+        label(for="Aminus") A-
+        input#Bplus(type="radio", name="bloodGroup")
+        label(for="Bplus") B+
+        input#Bminus(type="radio", name="bloodGroup")
+        label(for="Bminus") B-
+        input#ABplus(type="radio", name="bloodGroup")
+        label(for="ABplus") AB+
+        input#ABminus(type="radio", name="bloodGroup")
+        label(for="ABminus") AB-
+    .form-submit-btn
+      input(type="submit", value="Demander")
 
-          else
-            li.main-header__item
-              a(href="/register", class=(path === '/register' ? 'active' : '')) Register
-            li.main-header__item
-              a(href="/login", class=(path === '/login' ? 'active' : '')) Login
-
-      a(href="/donate")
-        img(src="images/cart.png", width="30px", height="30px")
-// ----------------account-pabe-------------
-if (userType === 'receiver')
-  p Please fill out the form below:
-  form(method='POST' action='/receiver-form')
-    label(for='name') Name:
-    input(type='text' name='name' required)
-    label(for='reason') Reason for visit:
-    textarea(name='reason' required)
-    button(type='submit') Submit

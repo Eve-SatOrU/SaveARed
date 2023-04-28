@@ -1,6 +1,7 @@
 const config =require('../config');
 // const Receiver = require('../models/user');
 const User = require('../models/user');
+const Request = require('../models/request');
 exports.getLogin = (req, res, next) => {
     res.render('admin/loginAdmin');
   };
@@ -65,3 +66,30 @@ exports.postAcceptReceiver = (req, res, next) => {
     })
     .catch(err => console.log(err));
   };
+//recieve form from reciever
+// exports.postReceiverForm = (req, res, next) => {
+//   const receiverId = req.body.id;
+//   const status = req.body.status;
+
+//   User.update({status: status}, {where: {id: receiverId}})
+//     .then(() => {
+//       res.redirect('/admin/dashboard');
+//     })
+//     .catch(err => console.log(err));
+// };
+exports.postRequestForm = (req, res, next) => {
+  const { fullName, address, email, phoneNumber, bloodGroup, gender, quantity } = req.body;
+  Request.create({
+    fullName,
+    address,
+    email,
+    phoneNumber,
+    bloodGroup,
+    gender,
+    quantity,
+  })
+    .then(() => {
+      res.redirect('/landing');
+    })
+    .catch((err) => console.log(err));
+};

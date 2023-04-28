@@ -29,6 +29,7 @@ const errorController = require('./controllers/error.js');
 app.use('/admin', adminRoutes);
 // app.use(errorController.get404);
  // app.use(express.json());
+
 //admin stuff
 
 const adminUsername = config.medcinresposable.username;

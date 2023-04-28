@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+const Request = require('../models/request');
 exports.getindex =(req,res,next)=>{
     res.render('index',{title:'index'});
 }
@@ -81,6 +82,3 @@ exports.getlanding = (req, res, next) => {
     res.redirect('/login');
   }
 };
-exports.postrecieverform =(req,res,next) =>{
-//to go to the admin
-}
