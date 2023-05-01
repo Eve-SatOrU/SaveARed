@@ -1,6 +1,7 @@
 const Sequelize =require('sequelize');
 const { DataTypes } = require('sequelize'); // Import DataTypes from Sequelize
 const sequelize = require('../util/database');
+const Notification = require('./notification');
 
 const User = sequelize.define('user', {
   id: {
@@ -18,5 +19,5 @@ const User = sequelize.define('user', {
   userPassword:Sequelize.STRING,
 }
 );
-
+User.hasMany(Notification, { foreignKey: 'adminId' });
 module.exports = User;

@@ -1,0 +1,27 @@
+doctype html
+table
+  thead
+    tr
+      th FullName
+      th Address
+      th Email
+      th PhoneNumber
+      th BloodGroup
+      th Gender
+      th Quantity
+      th Status
+      th Actions
+  tbody
+    each form in forms
+      tr
+        td= form.fullName
+        td= form.address
+        td= form.email
+        td= form.phoneNumber
+        td= form.bloodGroup
+        td= form.gender
+        td= form.quantity
+        td= form.status
+        td
+          form(action=`/admin/forms/${form.id}`, method='get')
+            button(type='submit' class='btn btn-primary') Voir

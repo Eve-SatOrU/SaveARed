@@ -61,9 +61,8 @@ exports.getRegister = (req, res, next) => {
     console.log("User in session:", req.session.user);
       req.session.destroy();
       res.redirect('/');
-  };
-  
-//reciever 
+  };  
+//reciever form 
 exports.postlanding=(req, res,next) => {
   console.log('Session:', req.session); // Add this line
   if (req.session.userType === 'receiver') {
@@ -81,4 +80,11 @@ exports.getlanding = (req, res, next) => {
   } else {
     res.redirect('/login');
   }
+};
+
+//see all history  but it didn't work i wanna come later
+exports.getFormHistory = async (req, res) => {
+  const id = req.user.id;
+  const forms = await Request.findAll({ where: { id } });
+  res.render('form-history', { forms });
 };

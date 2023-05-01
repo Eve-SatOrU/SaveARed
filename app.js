@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const sequelize = require('./util/database');
 const session = require('express-session');
-const User = require('./models/user');
 const fs = require('fs');
 const config = require('./config');
 const app = express();
@@ -26,6 +25,7 @@ app.use('/', routes);
 const userController = require('./controllers/usercontroller');
 const adminController =require('./controllers/admin');
 const errorController = require('./controllers/error.js');
+
 app.use('/admin', adminRoutes);
 // app.use(errorController.get404);
  // app.use(express.json());
@@ -34,6 +34,12 @@ app.use('/admin', adminRoutes);
 
 const adminUsername = config.medcinresposable.username;
 const adminPassword = config.medcinresposable.password;
+//db
+// const sequelize = require('./util/database');
+const User = require('./models/user');
+const Request = require('./models/request');
+// const Notification = require('./models/notification');
+User.hasMany(Request, { foreignKey: 'id' });
 
  sequelize.sync().then(() => {
 // sequelize.sync({ force: true }).then(() => {

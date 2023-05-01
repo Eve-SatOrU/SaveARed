@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body 
+        h1 Form Details
+        table
+            tr
+            th Full Name
+            td= form.fullName
+            tr
+            th Address
+            td= form.address
+            tr
+            th Email
+            td= form.email
+            tr
+            th Phone Number
+            td= form.phoneNumber
+            tr
+            th Blood Group
+            td= form.bloodGroup
+            tr
+            th Gender
+            td= form.gender
+            tr
+            th Quantity
+            td= form.quantity
+            tr
+            th Status
+            td= form.status
+        form(method="POST", action=`/admin/forms/${form.id}/accept`)
+          button(type="submit" name="accept" value="Accept") Accept
+        form(method="POST", action=`/admin/forms/${form.id}/delete`)
+          button(type="submit" name="delete" value="Delete") Delete

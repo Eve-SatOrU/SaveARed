@@ -101,7 +101,7 @@ section#content
             tr
               th Receveur
               th Date de demande
-              th Status
+              th Forms
               th Actions
           tbody
             each receiver in receivers
@@ -111,10 +111,23 @@ section#content
                   p= receiver.userName
                 td= receiver.createdAt.toLocaleDateString('fr-FR')
                 td
-                  span.status(class=receiver.status) Voir formulaire
+                  if (forms)
+                    each form in forms.filter(form => form.id === receiver.id)
+                      form(action=`/admin/forms/${form.id}/details`, method='get')
+                        button(type='submit' class='btn btn-primary') Voir
+
+                        //- td= form.fullName
+                        //- td= form.address
+                        //- td= form.email
+                        //- td= form.phoneNumber
+                        //- td= form.bloodGroup
+                        //- td= form.gender
+                        //- td= form.quantity
+                        //- td= form.status
+                        //- td
                 td
                   form(action=`/admin/delete-receiver/${receiver.id}`, method='post')
-                    button(type='submit' class='btn btn-danger') Supprimer
+                    button.btn(type='submit' class='btn btn-danger') Supprimer
       .todo
         .head
           h3 Donneurs
@@ -123,3 +136,11 @@ section#content
   //  MAIN 
 //  CONTENT 
 script(src="dashboard.js")
+script.
+  const voirButtons = document.querySelectorAll('.voir-btn');
+  voirButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const formId = button.dataset.formId;
+      window.location.href = `/admin/forms/${formId}/details`;
+    });
+  });

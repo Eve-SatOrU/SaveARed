@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/usercontroller');
+const { authenticateUser } = require('../controllers/usercontroller');
 router.get('/', userController.getindex);
 router.get('/login', userController.getLogin);
 router.get('/register', userController.getRegister);
