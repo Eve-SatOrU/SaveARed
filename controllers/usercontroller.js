@@ -63,14 +63,14 @@ exports.getRegister = (req, res, next) => {
       res.redirect('/');
   };  
 //reciever form 
-exports.postlanding=(req, res,next) => {
-  console.log('Session:', req.session); // Add this line
-  if (req.session.userType === 'receiver') {
-    res.render('reciever-landing', { userName: req.session.userName });
-  }else{
-    res.redirect('/login');
-  }
-};
+// exports.postlanding=(req, res,next) => {
+//   console.log('Session:', req.session); // Add this line
+//   if (req.session.userType === 'receiver') {
+//     res.render('reciever-landing', { userName: req.session.userName });
+//   }else{
+//     res.redirect('/login');
+//   }
+// };
 
 exports.getlanding = (req, res, next) => {
   if (req.session && req.session.userType === 'receiver') {
@@ -84,7 +84,15 @@ exports.getlanding = (req, res, next) => {
 
 //see all history  but it didn't work i wanna come later
 exports.getFormHistory = async (req, res) => {
-  const id = req.user.id;
-  const forms = await Request.findAll({ where: { id } });
-  res.render('form-history', { forms });
-};
+  if (req.session && req.session.userType === 'receiver') {
+    const id = req.params.id;
+    const forms = await Request.findAll({ where: { id } });
+    res.render('form-history', { forms });
+  } else {
+    res.redirect('/login');
+  }
+};// exports.getFormEachUser = async (req, res) => {
+//   const id = req.params.id;
+//   const form = await Request.findByPk(id);
+//   res.render('admin/form-details', { form });
+// };

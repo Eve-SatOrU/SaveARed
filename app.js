@@ -39,7 +39,7 @@ const adminPassword = config.medcinresposable.password;
 const User = require('./models/user');
 const Request = require('./models/request');
 // const Notification = require('./models/notification');
-User.hasMany(Request, { foreignKey: 'id' });
+// User.hasMany(Request, { foreignKey: 'id' });
 
  sequelize.sync().then(() => {
 // sequelize.sync({ force: true }).then(() => {

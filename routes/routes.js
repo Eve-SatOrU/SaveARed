@@ -11,6 +11,7 @@ router.post('/login', userController.postLogin);
 // router.get('/profile', userController.getProfile);
 // router.get('/reciever',userController.getreciever)
 router.get('/logout', userController.getLogout);
-router.post('/landing', userController.postlanding);
+// router.post('/landing', userController.postlanding);
 router.get('/landing', userController.getlanding);
+router.get('/history/:id',userController.getFormHistory);
 module.exports = router;

@@ -98,5 +98,6 @@ const Request = sequelize.define(
 
 // association with the User model
 Request.belongsTo(User, { foreignKey: 'id' });
+User.hasMany(Request, { foreignKey: 'id' });
 
 module.exports = Request;
