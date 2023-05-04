@@ -1,0 +1,17 @@
+doctype html
+table
+  thead
+    tr
+      th appointmentDate
+      th appointmentTime
+      th Status
+      th Actions
+  tbody
+    each appointment in appointments
+      tr
+        td= appointment.appointmentDate
+        td= appointment.appointmentTime
+        td= appointment.status
+        td
+        //-   form(action=`/admin/forms/${form.id}`, method='get')
+        //-     button(type='submit' class='btn btn-primary') Voir

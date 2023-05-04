@@ -38,6 +38,8 @@ const adminPassword = config.medcinresposable.password;
 // const sequelize = require('./util/database');
 const User = require('./models/user');
 const Request = require('./models/request');
+const Appointment = require('./models/appointment');
+
 // const Notification = require('./models/notification');
 // User.hasMany(Request, { foreignKey: 'id' });
 

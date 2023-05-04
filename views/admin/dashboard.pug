@@ -83,7 +83,7 @@ section#content
       li
         i.bx.bxs-group
         span.text
-          h3 60
+          h3 4
           p Donneurs
       li
         i.bx.bxs-dollar-circle
@@ -112,9 +112,12 @@ section#content
                 td= receiver.createdAt.toLocaleDateString('fr-FR')
                 td
                   if (forms)
-                    each form in forms.filter(form => form.id === receiver.id)
+                    //-  problem here
+                    //- each form in forms.filter(form => form.receiverId === receiver.id)
+                    each form in forms
                       form(action=`/admin/forms/${form.id}/details`, method='get')
                         button(type='submit' class='btn btn-primary') Voir
+
 
                         //- td= form.fullName
                         //- td= form.address
@@ -128,11 +131,40 @@ section#content
                 td
                   form(action=`/admin/delete-receiver/${receiver.id}`, method='post')
                     button.btn(type='submit' class='btn btn-danger') Supprimer
-      .todo
+      //- .todo
+      //-   .head
+      //-     h3 Donneurs
+      //-     i.bx.bx-plus
+      //-     i.bx.bx-filter
+    .table-data
+      .order
         .head
-          h3 Donneurs
-          i.bx.bx-plus
+          h3 Donors
+          i.bx.bx-search
           i.bx.bx-filter
+        table
+          thead
+            tr
+              th Donor
+              th Date de demande
+              th Forms
+              th Actions
+          tbody
+            each donor in donors
+              tr
+                td
+                  img(src="img/people.png")
+                  p= donor.userName
+                td= donor.createdAt.toLocaleDateString('fr-FR')
+                
+                td
+                  if (appointments)
+                      each appointment in appointments
+                          form(action=`/admin/appointments/${appointment.id}/details`, method='get')
+                              button(type='submit' class='btn btn-primary') Voir
+                td
+                  form(action=`/admin/delete-donor/${donor.id}`, method='post')
+                    button.btn(type='submit' class='btn btn-danger') Supprimer
   //  MAIN 
 //  CONTENT 
 script(src="dashboard.js")
