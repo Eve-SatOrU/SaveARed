@@ -17,36 +17,29 @@ exports.postlogin = (req, res,next) => {
     }
   };
   
-//get admin dashboard
-exports.getDashboard = (req, res, next) => {
-  if (req.session.ismedcinresposable) {
-    User.findAll({ where: { userType: 'receiver' } })
-      .then(receivers => {
-        User.findAll({ where: { userType: 'donor' } })
-          .then(donors => {
-            Request.belongsTo(User, { foreignKey: 'id' }); // add this line
-            Request.findAll({ include: User }) // add include option to include associated User model
-              .then(forms => {
-                res.render('admin/dashboard', {
-                  pageTitle: 'Dashboard',
-                  path: '/admin/dashboard',
-                  receivers: receivers,
-                  donors: donors,
-                  forms: forms 
-                });
-              })
-              .catch(err => console.log(err));
-          })
-          .catch(err => console.log(err));
-      })
-      .catch(err => console.log(err));
-  } else {
-    res.redirect('/admin/login');
-  }
-
-};
-
-  //accept and delete reciver 
+  exports.getDashboard = async (req, res, next) => {
+    try {
+      if (req.session.ismedcinresposable) {
+        const receivers = await User.findAll({ where: { userType: 'receiver' } });
+        const donors = await User.findAll({ where: { userType: 'donor' } });
+        const appointments = await Appointment.findAll({include: {model: User,as: 'donor'}});        
+        const forms = await Request.findAll({ include: [{ model: User }] });
+        res.render('admin/dashboard', {
+          pageTitle: 'Dashboard',
+          path: '/admin/dashboard',
+          receivers,
+          donors,
+          appointments,
+          forms
+        });
+      } else {
+        res.redirect('/admin/login');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+    //accept and delete reciver 
 exports.postAcceptReceiver = (req, res, next) => {
     const receiverId = req.params.id;
   
@@ -232,20 +225,26 @@ exports.deleteForm = async (req, res) => {
   };
 
   // create a new appointment
-exports.createAppointment = async (req, res) => {
-  const { appointmentTime,appointmentDate } = req.body;
-  try {
-    const appointment = await Appointment.create({
-      appointmentDate,
-      appointmentTime,
-      status: 'pending',
-      donorId: req.session.userId
-    });    
-    res.redirect('/');
-  } catch (error) {
-    console.error(error);
-  }
-};
+  exports.createAppointment = async (req, res) => {
+    const { appointmentTime, appointmentDate } = req.body;
+    try {
+      // Fetch the user object from the database using the donorId
+      const donor = await User.findOne({ where: { id: req.session.id } });
+  
+      // Create the appointment and associate it with the donor
+      const appointment = await Appointment.create({
+        appointmentDate,
+        appointmentTime,
+        status: 'pending',
+        donor: donor, // associate the donor object with the appointment
+      });
+  
+      res.redirect('/');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
 // //appointment of each donor
 exports.getAppointmentEachUser = async (req, res) => {
   const id = req.params.id;
@@ -311,3 +310,4 @@ exports.deleteAppointment = async (req, res) => {
   // Redirect the user to the /admin/forms page
   res.redirect('/admin/dashboard');
 };
+

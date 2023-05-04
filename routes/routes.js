@@ -16,4 +16,5 @@ router.get('/landing', userController.getlanding);
 router.get('/history/:id',userController.getFormHistory);
 //donor space
 router.get('/appointment-form', userController.appointmentForm);
+router.get('/appointment-history/:id',userController.getAppointmentHistory);
 module.exports = router;

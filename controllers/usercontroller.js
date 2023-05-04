@@ -2,6 +2,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const Request = require('../models/request');
+const Appointment = require('../models/appointment');
 exports.getindex =(req,res,next)=>{
     res.render('index',{title:'index'});
 }
@@ -110,46 +111,13 @@ exports.appointmentForm = async (req, res, next) => {
   }
 };
 
-
-// create a new appointment
-// exports.createAppointment = async (req, res) => {
-//   const { fullName, email, phoneNumber, appointmentDate } = req.body;
-//   try {
-//     const appointment = await Appointment.create({
-//       fullName,
-//       email,
-//       phoneNumber,
-//       appointmentDate,
-//       status: 'pending',
-//       donorId: req.session.userId
-//     });
-//     res.redirect(`/donor/appointments/${appointment.id}`);
-//   } catch (error) {
-//     console.error(error);
-//     res.redirect('/donor/appointments/new');
-//   }
-// };
-
-// get a donor's appointments
-// exports.getAppointments = async (req, res) => {
-//   if (req.session && req.session.userType === 'donor') {
-//     const appointments = await Appointment.findAll({ where: { donorId: req.session.userId } });
-//     res.render('donor-appointments', { appointments });
-//   } else {
-//     res.redirect('/login');
-//   }
-// };
-
-// // view a specific appointment
-// exports.viewAppointment = async (req, res) => {
-//   if (req.session && req.session.userType === 'donor') {
-//     const appointment = await Appointment.findByPk(req.params.id);
-//     if (!appointment || appointment.donorId !== req.session.userId) {
-//       return res.redirect('/donor/appointments');
-//     }
-//     res.render('donor-appointment', { appointment });
-//   } else {
-//     res.redirect('/login');
-//   }
-// };
-
+//see all history
+exports.getAppointmentHistory = async (req, res) => {
+  if (req.session && req.session.userType === 'donor') {
+    const id = req.params.id;
+    const appointments = await Appointment.findAll({ where: { id } });
+    res.render('appointment-history', { appointments });
+  } else {
+    res.redirect('/login');
+  }
+};

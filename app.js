@@ -29,6 +29,8 @@ const errorController = require('./controllers/error.js');
 app.use('/admin', adminRoutes);
 // app.use(errorController.get404);
  // app.use(express.json());
+ //error
+app.use(errorController.get404);
 
 //admin stuff
 

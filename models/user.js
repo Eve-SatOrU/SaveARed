@@ -3,6 +3,7 @@ const { DataTypes } = require('sequelize'); // Import DataTypes from Sequelize
 const sequelize = require('../util/database');
 const Notification = require('./notification');
 
+
 const User = sequelize.define('user', {
   id: {
     type: Sequelize.INTEGER,

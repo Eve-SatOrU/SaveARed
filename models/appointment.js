@@ -32,6 +32,6 @@ const Appointment = sequelize.define(
   }
 );
 
-Appointment.belongsTo(User, { as: 'donor', foreignKey: 'donorId' });
+Appointment.belongsTo(User, { as: 'donor', foreignKey: 'userName' });
 Appointment.belongsTo(Request, { foreignKey: 'requestId', onDelete: 'CASCADE' });
 module.exports = Appointment;
