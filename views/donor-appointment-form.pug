@@ -1,20 +1,31 @@
 doctype html
 html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-    body 
-        form(method="POST", action="/admin/appoinment-submission")
-            div
-                label(for="appointmentDate") Date:
-                input#date(type="date", name="appointmentDate", required)
-            div
-                label(for="appointmentTime") Time:
-                input#time(type="time", name="appointmentTime", required)
-            div
-                label(for="location") Location:
-                input#location(type="text", name="location", required)
-            div
-                button(type="submit") Schedule Appointment
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Document
+  body 
+    form(method="POST", action="/admin/appoinment-submission")
+      div
+        label(for="appointmentDate") Date:
+        input#date(type="date", name="appointmentDate", required)
+      div
+        label(for="appointmentTime") Time:
+        input#time(type="time", name="appointmentTime", required)
+      div
+        label(for="location") Location:
+        input#location(type="text", name="location", required)
+      div
+        label(for="bloodType") Blood Group:
+        select#bloodType(name="bloodType", required)
+          option(value="A+") A+
+          option(value="A-") A-
+          option(value="B+") B+
+          option(value="B-") B-
+          option(value="AB+") AB+
+          option(value="AB-") AB-
+          option(value="O+") O+
+          option(value="O-") O-
+      div
+        button(type="submit") Schedule Appointment

@@ -1,8 +1,10 @@
 const config =require('../config');
 // const Receiver = require('../models/user');
-const User = require('../models/user');
-const Request = require('../models/request');
+const BloodBank= require('../models/bloodbank');
 const Appointment = require('../models/appointment');
+const Request = require('../models/request');
+const User = require('../models/user');
+
 exports.getLogin = (req, res, next) => {
     res.render('admin/loginAdmin');
   };
@@ -225,25 +227,25 @@ exports.deleteForm = async (req, res) => {
   };
 
   // create a new appointment
-  exports.createAppointment = async (req, res) => {
-    const { appointmentTime, appointmentDate } = req.body;
-    try {
-      // Fetch the user object from the database using the donorId
-      const donor = await User.findOne({ where: { id: req.session.id } });
+  // exports.createAppointment = async (req, res) => {
+  //   const { appointmentTime, appointmentDate } = req.body;
+  //   try {
+  //     // Fetch the user object from the database using the donorId
+  //     const donor = await User.findOne({ where: { id: req.session.id } });
   
-      // Create the appointment and associate it with the donor
-      const appointment = await Appointment.create({
-        appointmentDate,
-        appointmentTime,
-        status: 'pending',
-        donor: donor, // associate the donor object with the appointment
-      });
+  //     // Create the appointment and associate it with the donor
+  //     const appointment = await Appointment.create({
+  //       appointmentDate,
+  //       appointmentTime,
+  //       status: 'pending',
+  //       donor: donor, // associate the donor object with the appointment
+  //     });
   
-      res.redirect('/');
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     res.redirect('/');
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   
 // //appointment of each donor
 exports.getAppointmentEachUser = async (req, res) => {
@@ -278,15 +280,28 @@ exports.getappointmentAdmin = async (req, res, next) => {
 };
 
 //accept and delete appontments
-exports.acceptAppointment= async (req, res) => {
+//accept and delete appontments
+exports.acceptAppointment = async (req, res) => {
   const id = req.params.id;
-  const appointment = await Appointment.findByPk(id);
+  const appointment = await Appointment.findByPk(id, {
+    include: [
+      {
+        model: User,
+        as: 'donor',
+      },
+    ],
+  });
+  
   if (!appointment) {
     res.status(404).send('Form not found');
     return;
   }
   appointment.status = 'accepted';
   await appointment.save();
+
+  // Add the accepted appointment to the blood bank stock
+  await createBloodBankRecord(appointment.bloodType);
+
   console.log("it work");
   res.redirect('/admin/dashboard');
 };
@@ -303,11 +318,51 @@ exports.deleteAppointment = async (req, res) => {
     res.status(404).send('Form not found');
     return;
   }
-
   // Delete the form submission from the database
   await appointment.destroy();
-
-  // Redirect the user to the /admin/forms page
   res.redirect('/admin/dashboard');
 };
 
+//blood bank space 
+
+// Create new blood bank record for a donor's appointment
+const createBloodBankRecord = async (bloodType) => {
+  const bloodBankRecord = await BloodBank.findOne({ where: { bloodType } });
+  if (bloodBankRecord) {
+    bloodBankRecord.quantity += 1;
+    await bloodBankRecord.save();
+  } else {
+    await BloodBank.create({ bloodType, quantity: 1 });
+  }
+};
+// Create new appointment and blood bank record
+exports.createAppointment = async (req, res) => {
+  const { appointmentTime, appointmentDate, bloodType } = req.body;
+  try {
+    const id = req.session.userId;
+    const user = await User.findByPk(id);
+    console.log("id issssssssss",id);
+
+    // Check if the user is a donor
+    if (user && user.userType === 'donor') {
+      // Create the appointment record, using the user's ID and blood type
+      const appointment = await Appointment.create({
+        appointmentDate,
+        appointmentTime,
+        status: 'pending',
+        donorId: user.id,
+        bloodType
+      });
+
+      // Create a new blood bank record for the donor's blood type
+      // await createBloodBankRecord(bloodType);
+
+      res.redirect('/');
+    } else {
+      throw new Error('User not found or not a donor');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('An error occurred');
+  }
+};

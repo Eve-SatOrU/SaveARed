@@ -28,14 +28,7 @@ router.get('/appointment', adminController.getappointmentAdmin);
 router.get('/appointments/:id/details', adminController.getAppointmentEachUser);
 router.post('/appointments/:id/accept', adminController.acceptAppointment);
 router.post('/appointments/:id/delete', adminController.deleteAppointment);
-
-
-
-
-
-
-
-
-
+//bloodbank
+// router.post('/newappointment',adminController.createAppointment);
 
 module.exports = router;

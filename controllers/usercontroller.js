@@ -47,11 +47,13 @@ exports.getRegister = (req, res, next) => {
       req.session.user = user;
       req.session.userName = userName;
       req.session.userType = 'donor';
+      req.session.userId = user.id; // Store user ID in session
       res.redirect('/appointment-form');
     } else {
       req.session.user = user;
       req.session.userName = userName;
       req.session.userType = 'receiver';
+      req.session.userId = user.id; // Store user ID in session
       res.redirect('/landing');
     }
   });

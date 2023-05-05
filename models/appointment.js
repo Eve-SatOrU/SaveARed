@@ -3,9 +3,12 @@ const Sequelize = require('sequelize');
 const { DataTypes } = require('sequelize');
 const sequelize = require('../util/database');
 const Request = require('./request');
+const BloodBank = require('./bloodbank');
 const User = require('./user');
+
+
 const Appointment = sequelize.define(
-'Appointment',
+  'Appointment',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -25,6 +28,10 @@ const Appointment = sequelize.define(
       type: DataTypes.STRING,
       defaultValue: 'pending',
     },
+    bloodType: {
+      type: DataTypes.ENUM('A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'),
+      allowNull: false,
+    }
   },
   {
     sequelize,
@@ -32,6 +39,10 @@ const Appointment = sequelize.define(
   }
 );
 
-Appointment.belongsTo(User, { as: 'donor', foreignKey: 'userName' });
+Appointment.belongsTo(User, { as: 'donor', foreignKey: 'donorId' });
 Appointment.belongsTo(Request, { foreignKey: 'requestId', onDelete: 'CASCADE' });
+Appointment.afterCreate(async (appointment) => {
+  await BloodBank.increment('stock', { where: { bloodType: appointment.bloodType } });
+});
+
 module.exports = Appointment;
