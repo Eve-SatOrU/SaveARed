@@ -29,24 +29,36 @@ link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@fortawesome/fontaweso
     a(href="/donate")
       img(src="/images/cart.png", width="30px", height="30px")
 // ----------------account-pabe-------------
-.account-page
-  .container
-    .row
-      .col-2
-        .form-container
-            .form-btn
-            .title
-              span(onclick="register()") Register
-            form.login-form(action="/register", method="post")
-                label(for="userName") userName
-                input(type="text", name="userName", placeholder="type your username", required)#userName
-                label(for="email") email
-                input(type="email", name="email", placeholder="type your email", required)#email
-                label(for="userPassword") userPassword
-                input(type="password", name="userPassword", placeholder="type your password", required)#userPassword
-                select#userType(name="userType")
-                  option(value="donor") Donor
-                  option(value="receiver") Receiver
-                button.btn(type="submit") register
-                a(href="/login") 
-                  p Already have an account?
+
+span(onclick="register()") Register
+form.login-form(action="/register", method="post")
+  label(for="userName") Username
+  input(type="text", name="userName", placeholder="Type your username", required)#userName
+  label(for="email") Email
+  input(type="email", name="email", placeholder="Type your email", required)#email
+  label(for="userPassword") Password
+  input(type="password", name="userPassword", placeholder="Type your password", required)#userPassword
+  label(for="sex") Sex
+  select#sex(name="sex")
+    option(value="male") Male
+    option(value="female") Female
+  label(for="dateOfBirth") Date of Birth
+  input(type="date", name="dateOfBirth", required)#dateOfBirth
+  label(for="phone") Phone
+  input(type="tel", name="phone", placeholder="Type your phone number", required)#phone
+  label(for="bloodGroup") Blood Group
+  select#bloodGroup(name="bloodGroup", required)
+    option(value="A+") A+
+    option(value="A-") A-
+    option(value="B+") B+
+    option(value="B-") B-
+    option(value="AB+") AB+
+    option(value="AB-") AB-
+    option(value="O+") O+
+    option(value="O-") O-
+  select#userType(name="userType", required)
+    option(value="donor") Donor
+    option(value="receiver") Receiver
+  button.btn(type="submit") Register
+  a(href="/login") 
+    p Already have an account?

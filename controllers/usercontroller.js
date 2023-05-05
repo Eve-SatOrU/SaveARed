@@ -18,15 +18,25 @@ exports.getRegister = (req, res, next) => {
       pageTitle: 'register'
     });
   };
-    exports.postRegister = async (req, res,next) => {
-      const { userName, userPassword,email,userType } = req.body;
-      try {
-        const user = await User.create({ userName, userPassword,email ,userType});
-        res.redirect('/login');
-      } catch (error) {
-        res.render('register', { error });
-      }
-    };  
+  exports.postRegister = async (req, res, next) => {
+    const { userName, userPassword, email, userType, sexe, dateOfBirth, phone, bloodGroup } = req.body;
+    try {
+      const user = await User.create({
+        userName,
+        userPassword,
+        email,
+        userType,
+        sexe,
+        dateOfBirth,
+        phone,
+        bloodGroup
+      });
+      res.redirect('/login');
+    } catch (error) {
+      res.render('register', { error });
+    }
+  };
+  
   exports.getLogin = (req, res, next) => {
     res.render('login', {
       path: '/login',
