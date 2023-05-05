@@ -30,5 +30,6 @@ router.post('/appointments/:id/accept', adminController.acceptAppointment);
 router.post('/appointments/:id/delete', adminController.deleteAppointment);
 //bloodbank
 // router.post('/newappointment',adminController.createAppointment);
+router.get('/blood-bank', adminController.getBloodBank);
 
 module.exports = router;

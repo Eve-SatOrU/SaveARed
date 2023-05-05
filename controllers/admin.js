@@ -366,3 +366,15 @@ exports.createAppointment = async (req, res) => {
     res.status(500).send('An error occurred');
   }
 };
+
+//get all blood bank
+//get all blood bank records
+exports.getBloodBank = async (req, res) => {
+  try {
+    const bloodBankRecords = await BloodBank.findAll();
+    res.render('admin/blood-bank', { bloodBankRecords });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('An error occurred while retrieving blood bank records');
+  }
+}
