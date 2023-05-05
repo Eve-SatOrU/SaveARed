@@ -1,0 +1,42 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title donate
+link(rel="stylesheet", href="/css/index.css")
+link(rel="preconnect", href="https://fonts.googleapis.com")
+link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap", rel="stylesheet")
+link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css")
+.container
+  .navbar
+    .logo
+      img(src="/images/logo2.png", width="123px")
+    nav
+      ul#MenuItems
+        li.main-header__item
+          a(href="/", class=(path === '/' ? 'active' : '')) Home
+        li.main-header__item
+          a(href="/about", class=(path === '/about' ? 'active' : '')) About
+        if user
+          li.main-header__item
+            a( href=`/profile/${user.id}`,class=(path === '/profile' ? 'active' : '')) Profile
+          li.main-header__item
+            a(href=`/chat/${user.id}`) chat
+          li.main-header__item
+            a(href="/logout", class=(path === '/logout' ? 'active' : '')) Logout
+
+        else
+          li.main-header__item
+            a(href="/register", class=(path === '/register' ? 'active' : '')) Register
+          li.main-header__item
+            a(href="/login", class=(path === '/login' ? 'active' : '')) Login
+
+    a(href="/donate")
+      img(src="/images/cart.png", width="30px", height="30px")
+// ----------------account-pabe-------------
+.account-page
+  .container
+    .row
+      .col-3
+        p profile of the user" #{user.userName} "
+        //- button.btn(type="submit") edit my profile
+
