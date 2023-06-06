@@ -1,5 +1,5 @@
 # Blood Donation System -SaveARed-
-
+<img src="./public/images/heartbeat-solid.svg" alt="SaveARed" width="200">
 The Blood Donation System is a web application that allows users to register as donors or receivers and facilitates the process of connecting blood donors with receivers in need. Donors can sign up, provide their blood type, and make themselves available for blood donations. Receivers can search for donors based on blood type and request blood donations.
 
 ## Features
