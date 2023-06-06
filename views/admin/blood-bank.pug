@@ -3,48 +3,48 @@ meta(name="viewport", content="width=device-width,initial-scale=1")
 //  Boxicons 
 link(href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css", rel="stylesheet")
 //  My CSS 
-link(rel="stylesheet", href="/css/sang.css")
-title Stock du sang
+link(rel="stylesheet", href="/css/dashboard.css")
+title blood-bank
 //  SIDEBAR 
 section#sidebar
   a.brand(href="#")
-    span.text Banque du sang 
+    span.text SaveARed 
   ul.side-menu.top
     li.active
       a(href="/admin/blood-bank")
         i.bx.bxs-dashboard
-        span.text Stock du sang 
+        span.text blood bank 
     li
       a(href="/admin/dashboard")
         i.bx.bxs-shopping-bag-alt
         span.text Dashboard
   ul.side-menu
     li
-      a(href="#")
+      a(href="/admin/profile")
         i.bx.bxs-cog
-        span.text Parametres
+        span.text Profile
     li
-      a.logout(href="#")
+      a.logout(href="/admin/login")
         i.bx.bxs-log-out-circle
-        span.text Deconnexion
+        span.text logout
 //  SIDEBAR 
 //  CONTENT 
 section#content
   //  NAVBAR 
   nav
     i.bx.bx-menu
-    a.nav-link(href="#") Donneurs
     form(action="#")
       .form-input
         input(type="search", placeholder="Rechercher...")
         button.search-btn(type="submit")
           i.bx.bx-search
     input#switch-mode(type="checkbox", hidden)
-    label.switch-mode(for="switch-mode")
+    label.switch-mode(for="switch-mode") 
     a.notification(href="#")
       i.bx.bxs-bell
       span.num 8
-    a.profile(href="#").
+    a.profile(href="#")
+      img(src="../images/adming.svg")
       
       
   //  NAVBAR 
@@ -52,33 +52,17 @@ section#content
   main
     .head-title
       .left
-        h1 Tableau de bord
+        h1 blood bank
         ul.breadcrumb
           li
-            a(href="#") Tableau de bord 
+            a(href="#") blood bank  
           li
             i.bx.bx-chevron-right
           li
-            a.active(href="#") accueil
+            a.active(href="#") blood bank
       a.btn-download(href="#")
         i.bx.bxs-cloud-download
-        span.text Telecharger le PDF
-    //- ul.box-info
-    //-   li
-    //-     i.bx.bxs-calendar-check
-    //-     span.text
-    //-       h3 100
-    //-       p Nouvelles demande
-    //-   li
-    //-     i.bx.bxs-group
-    //-     span.text
-    //-       h3 60
-    //-       p Donneurs
-    //-   li
-    //-     i.bx.bxs-shopping-bag-alt
-    //-     span.text
-    //-       h3 940
-    //-       p Unite totale (ml)
+        span.text download PDF
     .table-data
       .order
         .head
@@ -98,25 +82,14 @@ section#content
                 td= bloodBankRecord.updatedAt.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' })
                 td
                   span.status.pending= bloodBankRecord.stock + ' ml'
-
-            //- tr
-            //-   td
-            //-     p O+
-            //-   td 01-04-2023
-            //-   td
-            //-     span.status.pending 300 ml
-            //- tr
-            //-   td
-            //-     p O-
-            //-   td 01-04-2021
-            //-   td
-            //-     span.status.pending 120 ml
-            //- tr
-            //-   td
-            //-     p A+
-            //-   td 21-03-2021
-            //-   td
-            //-     span.status.process 100 ml
   //  MAIN 
 //  CONTENT 
-script(src="stock du sang.js")
+script(src="../js/dashboard.js")
+script.
+  const voirButtons = document.querySelectorAll('.voir-btn');
+  voirButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const formId = button.dataset.formId;
+      window.location.href = `/admin/forms/${formId}/details`;
+    });
+  });

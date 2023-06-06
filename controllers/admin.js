@@ -74,17 +74,6 @@ exports.postAcceptReceiver = (req, res, next) => {
     })
     .catch(err => console.log(err));
   };
-//recieve form from reciever
-// exports.postReceiverForm = (req, res, next) => {
-//   const receiverId = req.body.id;
-//   const status = req.body.status;
-
-//   User.update({status: status}, {where: {id: receiverId}})
-//     .then(() => {
-//       res.redirect('/admin/dashboard');
-//     })
-//     .catch(err => console.log(err));
-// };
 exports.postRequestForm = (req, res, next) => {
   const { fullName, address, email, phoneNumber, bloodGroup, gender, quantity } = req.body;
   Request.create({
@@ -125,30 +114,6 @@ exports.getrecieverform = async (req, res) => {
 
   res.render('admin/notifications', { notifications });
 };
-//admin see froms of each user
-
-//all forms
-exports.getformAdmin = async (req, res, next) => {
-  if (!req.session.ismedcinresposable) {
-    return res.redirect('/admin/login');
-  }
-
-  try {
-    // Get all the receivers with their associated user data
-    const receivers = await Receiver.findAll({
-      include: {
-        model: User,
-        attributes: ['userName'],
-      },
-    });
-
-    // Render the view with the form data
-    res.render('admin/forms', { receivers: receivers, receiver: receiver } );
-  } catch (error) {
-    next(error);
-  }
-};
-
 //see form of each user
 exports.getFormEachUser = async (req, res) => {
   const id = req.params.id;
@@ -225,27 +190,6 @@ exports.deleteForm = async (req, res) => {
     })
     .catch(err => console.log(err));
   };
-
-  // create a new appointment
-  // exports.createAppointment = async (req, res) => {
-  //   const { appointmentTime, appointmentDate } = req.body;
-  //   try {
-  //     // Fetch the user object from the database using the donorId
-  //     const donor = await User.findOne({ where: { id: req.session.id } });
-  
-  //     // Create the appointment and associate it with the donor
-  //     const appointment = await Appointment.create({
-  //       appointmentDate,
-  //       appointmentTime,
-  //       status: 'pending',
-  //       donor: donor, // associate the donor object with the appointment
-  //     });
-  
-  //     res.redirect('/');
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
   
 // //appointment of each donor
 exports.getAppointmentEachUser = async (req, res) => {
@@ -254,32 +198,6 @@ exports.getAppointmentEachUser = async (req, res) => {
   res.render('admin/appointment-details', { appointment });
 };
 
-//all forms
-exports.getappointmentAdmin = async (req, res, next) => {
-  if (!req.session.ismedcinresposable) {
-      return res.redirect('/admin/login');
-  }
-
-  try {
-      // Get all the donors with their associated user data
-      const donors = await Donor.findAll({
-          include: {
-              model: User,
-              attributes: ['userName'],
-          },
-      });
-
-      // Fetch all appointments for all donors
-      const appointments = await Appointment.findAll({ where: { donorId: donors.map(donor => donor.id) } });
-
-      // Render the view with the form data and appointments
-      res.render('admin/appointments', { donors, appointments });
-  } catch (error) {
-      next(error);
-  }
-};
-
-//accept and delete appontments
 //accept and delete appontments
 exports.acceptAppointment = async (req, res) => {
   const id = req.params.id;

@@ -4,6 +4,8 @@ const router = express.Router();
 const userController = require('../controllers/usercontroller');
 const { authenticateUser } = require('../controllers/usercontroller');
 router.get('/', userController.getindex);
+router.get('/contact', userController.getcontact);
+router.get('/about', userController.getabout);
 router.get('/login', userController.getLogin);
 router.get('/register', userController.getRegister);
 router.post('/register', userController.postRegister);

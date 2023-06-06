@@ -1,42 +1,121 @@
 meta(charset="UTF-8")
+meta(http-equiv="X-UA-Compatible", content="IE=edge")
 meta(name="viewport", content="width=device-width,initial-scale=1")
-title donate
-link(rel="stylesheet", href="/css/index.css")
-link(rel="preconnect", href="https://fonts.googleapis.com")
-link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
-link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap", rel="stylesheet")
-link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css")
-.container
-  .navbar
-    .logo
-      img(src="/images/logo2.png", width="123px")
-    nav
-      ul#MenuItems
-        li.main-header__item
-          a(href="/", class=(path === '/' ? 'active' : '')) Home
-        li.main-header__item
-          a(href="/about", class=(path === '/about' ? 'active' : '')) About
-        if user
-          li.main-header__item
-            a( href=`/profile/${user.id}`,class=(path === '/profile' ? 'active' : '')) Profile
-          li.main-header__item
-            a(href=`/chat/${user.id}`) chat
-          li.main-header__item
-            a(href="/logout", class=(path === '/logout' ? 'active' : '')) Logout
-
-        else
-          li.main-header__item
-            a(href="/register", class=(path === '/register' ? 'active' : '')) Register
-          li.main-header__item
-            a(href="/login", class=(path === '/login' ? 'active' : '')) Login
-
-    a(href="/donate")
-      img(src="/images/cart.png", width="30px", height="30px")
-// ----------------account-pabe-------------
-.account-page
-  .container
-    .row
-      .col-3
-        p profile of the user" #{user.userName} "
-        //- button.btn(type="submit") edit my profile
-
+title SaveARed 
+//  Page Icon 
+link(rel="shortcut icon", href="./images/heartbeat-solid.svg", type="./images/x-icon")
+//  font-awesome 
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css")
+//  Custom Css File Link 
+link(rel="stylesheet", href="../css/style.css")
+link(rel="stylesheet", href="../css/profile.css")
+//  Header Section Starts 
+.header
+  a.logo(href="/")
+    i.fas.fa-heartbeat
+    |  SaveARed
+  nav.navbar
+    a(href="/" , class=(path === '/' ? 'active' : '')) home
+    a(href="/about") about
+    a(href="/contact") contact us
+    if user
+      if user.userType === 'donor'
+        a(href="/appointment-form", class=(path === '/donor-landing' ? 'active' : '')) appointment
+      else if user.userType === 'receiver'
+        a(href="/landing", class=(path === '/appointment-form' ? 'active' : '')) request
+      a(href="/logout") logout
+    else
+      a(href="/register" , class=(path === '/register' ? 'active' : '')) register
+      a(href="/login" , class=(path === '/login' ? 'active' : '')) login
+  #menu-btn.fas.fa-bars
+//  Header Section End 
+//  Home Section starts 
+section.home#home
+header
+section.main
+    img(src="../images/girl.svg", alt="ohayo")
+    span #{user.userName}
+    p #{user.userType}
+    h1.black #{user.sex}
+    h1.black #{user.phone}
+    h2.black #{user.bloodGroup}
+    h1.black #{user.dateOfBirth}
+    button.btn(type="submit") edit profile
+    ul
+      li
+        a(target="_blank", href="")
+          i.fab.fa-discord
+      li
+        a(target="_blank", href="")
+          i.fab.fa-github
+      li
+        a(target="_blank", href="")
+          i.fab.fa-youtube
+section.footer
+  .box-container
+    .box
+      h3 quick links
+      a(href="/")
+        i.fas.fa-chevron-right
+        |  home
+      a(href="/about")
+        i.fas.fa-chevron-right
+        |  about
+      a(href="contact")
+        i.fas.fa-chevron-right
+        |  contact us
+    .box
+      h3 our services
+      a(href="#")
+        i.fas.fa-chevron-right
+        |  Free Checkups
+      a(href="#")
+        i.fas.fa-chevron-right
+        |  24/7 Ambulance
+      a(href="#")
+        i.fas.fa-chevron-right
+        |  Total Care
+    .box
+      h3 contact info
+      a(href="#")
+        i.fas.fa-phone
+        |  +123-456-7859
+      a(href="#")
+        i.fas.fa-phone
+        |  +987-654-3210
+      a(href="#")
+        i.fas.fa-envelope
+        |  SaveARed.info.com
+      a(href="#")
+        i.fas.fa-envelope
+        |  SaveARed.info.@gmail.com
+      a(href="#")
+        i.fas.fa-map-marker-alt
+        |  setif, setif - 1000
+    .box
+      h3 follow us
+      a(href="#")
+        i.fab.fa-facebook-f
+        |  facebook
+      a(href="#")
+        i.fab.fa-twitter
+        |  twitter
+      a(href="#")
+        i.fab.fa-linkedin
+        |  linkedin
+      a(href="#")
+        i.fab.fa-instagram
+        |  instagram
+      a(href="#")
+        i.fab.fa-youtube
+        |  youtube
+      a(href="#")
+        i.fab.fa-pinterest
+        |  pinterest
+  .credit
+    | created by 
+    span Eve SatOrU
+    |  | all right reserved
+//  Footer section End  
+//  custom js file link  
+script(src="js/script.js")

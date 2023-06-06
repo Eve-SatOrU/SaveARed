@@ -1,23 +1,48 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Document
-  body 
+meta(charset="UTF-8")
+meta(http-equiv="X-UA-Compatible", content="IE=edge")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title SaveARed 
+//  Page Icon 
+link(rel="shortcut icon", href="./images/heartbeat-solid.svg", type="./images/x-icon")
+//  font-awesome 
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css")
+//  Custom Css File Link 
+link(rel="stylesheet", href="./css/style.css")
+//  Header Section Starts 
+.header
+  a.logo(href="/")
+    i.fas.fa-heartbeat
+    |  SaveARed
+  nav.navbar
+    a(href="/" , class=(path === '/' ? 'active' : '')) home
+    a(href="/about") about
+    a(href="/contact") contact us
+    if userType
+      a(href="/appointment-form", class=(path === '/donor-landing' ? 'active' : '')) appointment
+      a(href="/logout") logout
+    else
+      a(href="/register" , class=(path === '/register' ? 'active' : '')) register
+      a(href="/login" , class=(path === '/login' ? 'active' : '')) login
+  #menu-btn.fas.fa-bars
+//  Header Section End 
+section.home
+header
+section.book
+  .row
+    .image
+      img(src="./images/login.svg", alt)
     form(method="POST", action="/admin/appoinment-submission")
       div
-        label(for="appointmentDate") Date:
-        input#date(type="date", name="appointmentDate", required)
+        label.label(for="appointmentDate") Date:
+        input#date.box(type="date", name="appointmentDate", required)
       div
-        label(for="appointmentTime") Time:
-        input#time(type="time", name="appointmentTime", required)
+        label.label(for="appointmentTime") Time:
+        input#time.box(type="time", name="appointmentTime", required)
       div
-        label(for="location") Location:
-        input#location(type="text", name="location", required)
+        label.label(for="location") Location:
+        input#location.box(type="text", name="location", required)
       div
-        label(for="bloodType") Blood Group:
+        label.label(for="bloodType") Blood Group:
         select#bloodType(name="bloodType", required)
           option(value="A+") A+
           option(value="A-") A-
@@ -28,4 +53,75 @@ html(lang="en")
           option(value="O+") O+
           option(value="O-") O-
       div
-        button(type="submit") Schedule Appointment
+        button.btn(type="submit") Schedule Appointment
+
+
+//  Footer section Starts  
+section.footer
+  .box-container
+    .box
+      h3 quick links
+      a(href="/")
+        i.fas.fa-chevron-right
+        |  home
+      a(href="/about")
+        i.fas.fa-chevron-right
+        |  about
+      a(href="contact")
+        i.fas.fa-chevron-right
+        |  contact us
+    .box
+      h3 our services
+      a(href="#")
+        i.fas.fa-chevron-right
+        |  Free Checkups
+      a(href="#")
+        i.fas.fa-chevron-right
+        |  24/7 Ambulance
+      a(href="#")
+        i.fas.fa-chevron-right
+        |  Total Care
+    .box
+      h3 contact info
+      a(href="#")
+        i.fas.fa-phone
+        |  +123-456-7859
+      a(href="#")
+        i.fas.fa-phone
+        |  +987-654-3210
+      a(href="#")
+        i.fas.fa-envelope
+        |  SaveARed.info.com
+      a(href="#")
+        i.fas.fa-envelope
+        |  SaveARed.info.@gmail.com
+      a(href="#")
+        i.fas.fa-map-marker-alt
+        |  setif, setif - 1000
+    .box
+      h3 follow us
+      a(href="#")
+        i.fab.fa-facebook-f
+        |  facebook
+      a(href="#")
+        i.fab.fa-twitter
+        |  twitter
+      a(href="#")
+        i.fab.fa-linkedin
+        |  linkedin
+      a(href="#")
+        i.fab.fa-instagram
+        |  instagram
+      a(href="#")
+        i.fab.fa-youtube
+        |  youtube
+      a(href="#")
+        i.fab.fa-pinterest
+        |  pinterest
+  .credit
+    | created by 
+    span Eve SatOrU
+    |  | all right reserved
+//  Footer section End  
+//  custom js file link  
+script(src="js/script.js")

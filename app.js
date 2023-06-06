@@ -27,7 +27,6 @@ const adminController =require('./controllers/admin');
 const errorController = require('./controllers/error.js');
 
 app.use('/admin', adminRoutes);
-// app.use(errorController.get404);
  // app.use(express.json());
  //error
 app.use(errorController.get404);
@@ -44,8 +43,6 @@ const Appointment = require('./models/appointment');
 const Notification = require('./models/notification');
 const bloodbank =require('./models/bloodbank');
 
-// const Notification = require('./models/notification');
-// User.hasMany(Request, { foreignKey: 'id' });
 
  sequelize.sync().then(() => {
 // sequelize.sync({ force: true }).then(() => {

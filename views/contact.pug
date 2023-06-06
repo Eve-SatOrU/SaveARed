@@ -7,7 +7,8 @@ link(rel="shortcut icon", href="./images/heartbeat-solid.svg", type="./images/x-
 //  font-awesome 
 link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css")
 //  Custom Css File Link 
-link(rel="stylesheet", href="./css/style.css")
+link(rel="stylesheet", href="../css/style.css")
+link(rel="stylesheet", href="../css/profile.css")
 //  Header Section Starts 
 .header
   a.logo(href="/")
@@ -28,49 +29,24 @@ link(rel="stylesheet", href="./css/style.css")
       a(href="/login" , class=(path === '/login' ? 'active' : '')) login
   #menu-btn.fas.fa-bars
 //  Header Section End 
+//  Home Section starts 
 section.home
 header
-section.book
+section.book#contact
+  h1.heading
+    span contact
+    |  us
   .row
     .image
-      img(src="./images/register.svg", alt)
-    form(action="/register", method="post")
-      h3 register
-      label.label(for="userName") Username
-      input.box(type="text", name="userName", placeholder="Type your username", required)#userName
-      label.label(for="email") Email
-      input.box(type="email", name="email", placeholder="Type your email", required)#email
-      label.label(for="userPassword") Password
-      input.box(type="password", name="userPassword", placeholder="Type your password", required)#userPassword
-      label.label(for="sex") Sex
-      select#sex.box(name="sex")
-        option(value="male") Male
-        option(value="female") Female
-      label.label(for="dateOfBirth") Date of Birth
-      input.box(type="date", name="dateOfBirth", required)#dateOfBirth
-      label.label(for="phone") Phone
-      input.box(type="tel", name="phone", placeholder="Type your phone number", required)#phone
-      label.label(for="bloodGroup") Blood Group
-      select#bloodGroup.box(name="bloodGroup", required)
-        option(value="A+") A+
-        option(value="A-") A-
-        option(value="B+") B+
-        option(value="B-") B-
-        option(value="AB+") AB+
-        option(value="AB-") AB-
-        option(value="O+") O+
-        option(value="O-") O-
-      label.label(for="bloodGroup") userType
-      select#userType.box(name="userType", required)
-        option(value="donor") Donor
-        option(value="receiver") Receiver
-      button.btn(type="submit") Register
-      a(href="/login") 
-        h4 Already have an account?
+      img(src="./images/Contact.png", alt)
+    form(action)
+      h3 contact informations
+      input.box(type="text", placeholder="your name")
+      input.box(type="number", placeholder="your number")
+      input.box(type="email", placeholder="your email")
+      textarea.box( name="message" ,placeholder="Enter your message")
+      input.btn(type="submit", value="send now")
 
-
-
-//  Footer section Starts  
 section.footer
   .box-container
     .box

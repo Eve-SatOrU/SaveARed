@@ -1,32 +1,32 @@
 meta(charset="UTF-8")
+meta(http-equiv="X-UA-Compatible", content="IE=edge")
 meta(name="viewport", content="width=device-width,initial-scale=1")
-title login
-link(rel="stylesheet", href="/css/index.css")
-link(rel="preconnect", href="https://fonts.googleapis.com")
-link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
-link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap", rel="stylesheet")
-link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css")
+title SaveARed 
+//  Page Icon 
+link(rel="shortcut icon", href="../images/heartbeat-solid.svg", type="../images/x-icon")
+//  font-awesome 
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css")
+//  Custom Css File Link 
+link(rel="stylesheet", href="../css/style.css")
+//  Header Section Starts 
 .header
-  .container
-    .navbar
-      nav
-        ul#MenuItems
-          li.main-header__item
-            a(href="/admin/index", class=(path === '/' ? 'active' : '')) Home
-// ----------------account-pabe-------------
-.account-page
-  .container
-    .row
-      .col-2
-        .form-container
-            .form-btn
-            //- span(onclick="login()") Login
-            .title
-              span(onclick="login()") Login
-            form.login-form(action="/admin/login", method="post")
-                label(for="username") username
-                input(type="text", name="username", placeholder="type your username", required)#username
-                label(for="password") userPassword
-                input(type="password", name="password", placeholder="type your password", required)#password
-                button.btn(type="submit") login
-    
+  a.logo(href="#")
+    i.fas.fa-heartbeat
+    |  SaveARed
+  nav.navbar
+    a(href="/" , class=(path === '/' ? 'active' : '')) home
+  //- #menu-btn.fas.fa-bars
+//  Header Section End 
+section.home
+section.book
+  .row
+    .image
+      img(src="../images/Admin.svg", alt)
+    form.login-form(action="/admin/login", method="post")
+      h3#color login 
+      label.label(for="username") username
+      input.box(type="text", name="username", placeholder="type your username", required)#username
+      label.label(for="password") userPassword
+      input.box(type="password", name="password", placeholder="type your password", required)#password
+      button.btn(type="submit") login
+

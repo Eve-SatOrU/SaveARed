@@ -1,35 +1,322 @@
 meta(charset="UTF-8")
+meta(http-equiv="X-UA-Compatible", content="IE=edge")
 meta(name="viewport", content="width=device-width,initial-scale=1")
-title home
-link(rel="stylesheet", href="css/index.css")
-link(rel="preconnect", href="https://fonts.googleapis.com")
-link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
-link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap", rel="stylesheet")
-link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css")
+title SaveARed 
+//  Page Icon 
+link(rel="shortcut icon", href="./images/heartbeat-solid.svg", type="./images/x-icon")
+//  font-awesome 
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css")
+//  Custom Css File Link 
+link(rel="stylesheet", href="./css/style.css")
+//  Header Section Starts 
 .header
-  .container
-    .navbar
-      nav
-        ul#MenuItems
-          li.main-header__item
-            a(href="/", class=(path === '/' ? 'active' : '')) Home
-          li.main-header__item
-            a(href="/about", class=(path === '/about' ? 'active' : '')) About
-          if user
-            li.main-header__item
-              a( href=`/profile/${user.id}`,class=(path === '/profile' ? 'active' : '')) Profile
-            li.main-header__item
-              a(href=`/chat/${user.id}`) chat
-            li.main-header__item
-              a(href="/logout", class=(path === '/logout' ? 'active' : '')) Logout
+  a.logo(href="/")
+    i.fas.fa-heartbeat
+    |  SaveARed
+  nav.navbar
+    a(href="/" , class=(path === '/' ? 'active' : '')) home
+    a(href="/about") about
+    a(href="/contact") contact us
+    if user
+      if user.userType === 'donor'
+        a(href="/appointment-form", class=(path === '/donor-landing' ? 'active' : '')) appointment
+      else if user.userType === 'receiver'
+        a(href="/landing", class=(path === '/appointment-form' ? 'active' : '')) request
+      a(href="/logout") logout
+    else
+      a(href="/register" , class=(path === '/register' ? 'active' : '')) register
+      a(href="/login" , class=(path === '/login' ? 'active' : '')) login
+  #menu-btn.fas.fa-bars
+//  Header Section End 
+//  Home Section starts 
+section.home#home
+  .image
+    img(src="./images/Bloodhome.svg", alt="home-img.svg")
+  .content
+    h3 Give blood ,save lives
+    p Your presence at the blood donation center can make a life-saving difference. Step up, give blood, and be the hero someone is waiting for.
+    a.btn(href="/register")
+      | get started 
+      span.fas.fa-chevron-right
+      |  
+//  Home Section End 
+//  icons section starts  
+section.icons-container
+  .icons
+    i.fas.fa-user-md
+    h3 140+
+    p donation
+  .icons
+    i.fas.fa-users
+    h3 1040+
+    p live saved
+  .icons
+    i.fas.fa-procedures
+    h3 500+
+    p donor
+  .icons
+    i.fas.fa-hospital
+    h3 80+
+    p available hospitals
+//  icons section End  
+//  Service section Starts  
+section.services#services
+  h1.heading
+    | our 
+    span services
+  .box-container
+    .box
+      i.fas.fa-notes-medical
+      h3 free checkups
+      p Access to quality healthcare should never be a luxury. That's why we offer free checkups to ensure everyone has the opportunity to prioritize their health. Our commitment to the community drives us to provide comprehensive and reliable health assessments at no cost.
+      //- a.btn(href="#")
+      //-   | learn more 
+      //-   span.fas.fa-chevron-right
+      //-   |  
+    .box
+      i.fas.fa-ambulance
+      h3 24/7 ambulance
+      p Experience peace of mind with our 24/7 Ambulance service. We are dedicated to providing swift and reliable emergency medical transportation whenever you need it.Our highly trained and compassionate medical professionals are available round the clock to ensure timely response and expert care during critical situations
+      //- a.btn(href="#")
+      //-   | learn more 
+      //-   span.fas.fa-chevron-right
+        |  
+    .box
+      i.fas.fa-heartbeat
+      h3 total care
+      p Our dedicated team ensures your comfort and safety. We provide guidance, answer your questions, and address any concerns. With meticulous hygiene protocols and quality control, your health is our priority. Experience the convenience, compassion, and impact of Total Care Blood Donation. Join us in saving lives, one donation at a time.
+      //- a.btn(href="#")
+      //-   | learn more 
+      //-   span.fas.fa-chevron-right
+      //-   |  
+//  Service section End  
+//  About section Starts  
+section.about#about
+  h1.heading
+    span about
+    |  us
+  .row
+    .image
+      img(src="./images/Doctors.svg", alt)
+    .content
+      //- h3 Saving lives through blood donation. Join us, make a difference
+      p "We are SaveARed, a passionate team dedicated to saving lives through blood donation. Our mission is to connect donors with those in need and build a community focused on making a positive impact.
+      p  With a strong commitment to our communities, we raise awareness about the critical importance of blood donation. Through partnerships and initiatives, we strive to ensure a sustainable blood supply for hospitals, clinics, and emergencies.
+      p Our dedicated team organizes blood drives, facilitates donor registration, and provides vital support services to both donors and recipients. Every donation has the power to make a difference, and we are devoted to fostering a culture of giving and compassion.
+      p  Join us on this life-saving journey. Together, we can create a healthier, stronger community. Thank you for being a part of our mission."
+      a.btn(href="/about")
+        | learn more 
+        span.fas.fa-chevron-right
+        |  
+//  About section End  
+//  Doctors section Starts  
+section.doctors#doctors
+  h1.heading
+    | call  
+    span TO ACTION
+  .box-container
+    .box
+      img(src="./images/Hospital.png", alt)
+      h3 BIZAR CENTER
+      .share
+        a.fab.fa-facebook-f(href="#")
+        a.fab.fa-twitter(href="#")
+        a.fab.fa-linkedin(href="#")
+        a.fab.fa-instagram(href="#")
+    .box
+      img(src="./images/Hospital.png", alt)
+      h3 BIZAR CENTER
+      .share
+        a.fab.fa-facebook-f(href="#")
+        a.fab.fa-twitter(href="#")
+        a.fab.fa-linkedin(href="#")
+        a.fab.fa-instagram(href="#")
+    .box
+      img(src="./images/Hospital.png", alt)
+      h3 BIZAR CENTER
+      .share
+        a.fab.fa-facebook-f(href="#")
+        a.fab.fa-twitter(href="#")
+        a.fab.fa-linkedin(href="#")
+        a.fab.fa-instagram(href="#")
+//  Doctors section Ends  
+//  contact section Starts  
+section.book#contact
+  h1.heading
+    span contact
+    |  us
+  .row
+    .image
+      img(src="./images/Contact.png", alt)
+    form(action)
+      h3 contact informations
+      input.box(type="text", placeholder="your name")
+      input.box(type="number", placeholder="your number")
+      input.box(type="email", placeholder="your email")
+      textarea.box( name="message" ,placeholder="Enter your message")
+      input.btn(type="submit", value="send now")
 
-          else
-            li.main-header__item
-              a(href="/register", class=(path === '/register' ? 'active' : '')) Register
-            li.main-header__item
-              a(href="/login", class=(path === '/login' ? 'active' : '')) Login
-
-      a(href="/donate")
-        img(src="images/cart.png", width="30px", height="30px")
-    .row
-    a.btn(href="/register") register now →
+//  Review section Starts  
+section.review#review
+  h1.heading
+    | client's 
+    span review
+  .box-container
+    .box
+      img(src="./images/pic-1.png", alt)
+      h3 Jazmin Archer
+      .stars
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star-half-alt
+      p.text I am incredibly impressed with the results of SaveARed. The team behind this project demonstrated exceptional expertise and dedication throughout the entire process. Not only did they understand our unique needs, but they also delivered a solution that surpassed our expectations. I highly recommend to anyone for looking blood donate .
+    .box
+      img(src="./images/pic-2.png", alt)
+      h3 Jazmin Archer
+      .stars
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star-half-alt
+      p.text I am incredibly impressed with the results of SaveARed. The team behind this project demonstrated exceptional expertise and dedication throughout the entire process. Not only did they understand our unique needs, but they also delivered a solution that surpassed our expectations. I highly recommend to anyone for looking blood donate .
+    .box
+      img(src="./images/pic-3.png", alt)
+      h3 Abdiel Galloway
+      .stars
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star-half-alt
+      p.text I am incredibly impressed with the results of SaveARed. The team behind this project demonstrated exceptional expertise and dedication throughout the entire process. Not only did they understand our unique needs, but they also delivered a solution that surpassed our expectations. I highly recommend to anyone for looking blood donate .
+//  Review section End  
+//  Blogs section Starts 
+section.blogs#blogs
+  h1.heading
+    | our 
+    span blogs
+  .box-container
+    .box
+      .image
+        img(src="./images/Ambulance.png", alt)
+      .content
+        .icon
+          a()
+            i.fas.fa-calendar
+            | 1st may, 2023
+          a()
+            i.fas.fa-user
+            |  by admin
+        h3 first blog 
+        p Uncover the impact of our donation campaigns through captivating blog stories. Join the movement, get inspired, and make a difference today.
+        a.btn(href="#")
+          | learn more 
+          span.fas.fa-chevron-right
+          |  
+    .box
+      .image
+        img(src="./images/Ambulance.png", alt)
+      .content
+        .icon
+          a()
+            i.fas.fa-calendar
+            |  1st may, 2023
+          a()
+            i.fas.fa-user
+            |  by admin
+        h3 second blog
+        p Uncover the impact of our donation campaigns through captivating blog stories. Join the movement, get inspired, and make a difference today.
+        a.btn(href="#")
+          | learn more 
+          span.fas.fa-chevron-right
+          |  
+    .box
+      .image
+        img(src="./images/Ambulance.png", alt)
+      .content
+        .icon
+          a()
+            i.fas.fa-calendar
+            |  1st may, 2023
+          a()
+            i.fas.fa-user
+            |  by admin
+        h3 third blog
+        p Uncover the impact of our donation campaigns through captivating blog stories. Join the movement, get inspired, and make a difference today.
+        a.btn(href="#")
+          | learn more 
+          span.fas.fa-chevron-right
+          |  
+//  Blogs section End 
+//  Footer section Starts  
+section.footer
+  .box-container
+    .box
+      h3 quick links
+      a(href="/")
+        i.fas.fa-chevron-right
+        |  home
+      a(href="/about")
+        i.fas.fa-chevron-right
+        |  about
+      a(href="contact")
+        i.fas.fa-chevron-right
+        |  contact us
+    .box
+      h3 our services
+      a(href="#")
+        i.fas.fa-chevron-right
+        |  Free Checkups
+      a(href="#")
+        i.fas.fa-chevron-right
+        |  24/7 Ambulance
+      a(href="#")
+        i.fas.fa-chevron-right
+        |  Total Care
+    .box
+      h3 contact info
+      a(href="#")
+        i.fas.fa-phone
+        |  +123-456-7859
+      a(href="#")
+        i.fas.fa-phone
+        |  +987-654-3210
+      a(href="#")
+        i.fas.fa-envelope
+        |  SaveARed.info.com
+      a(href="#")
+        i.fas.fa-envelope
+        |  SaveARed.info.@gmail.com
+      a(href="#")
+        i.fas.fa-map-marker-alt
+        |  setif, setif - 1000
+    .box
+      h3 follow us
+      a(href="#")
+        i.fab.fa-facebook-f
+        |  facebook
+      a(href="#")
+        i.fab.fa-twitter
+        |  twitter
+      a(href="#")
+        i.fab.fa-linkedin
+        |  linkedin
+      a(href="#")
+        i.fab.fa-instagram
+        |  instagram
+      a(href="#")
+        i.fab.fa-youtube
+        |  youtube
+      a(href="#")
+        i.fab.fa-pinterest
+        |  pinterest
+  .credit
+    | created by 
+    span Eve SatOrU
+    |  | all right reserved
+//  Footer section End  
+//  custom js file link  
+script(src="js/script.js")

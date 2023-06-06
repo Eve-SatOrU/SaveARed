@@ -8,7 +8,7 @@ title Dashboard
 //  SIDEBAR 
 section#sidebar
   a.brand(href="#")
-    span.text Banque du sang 
+    span.text SaveARed 
   ul.side-menu.top
     li.active
       a(href="/admin/dashboard")
@@ -20,20 +20,20 @@ section#sidebar
         span.text Stock du sang 
   ul.side-menu
     li
-      a(href="#")
+      a(href="/admin/profile")
         i.bx.bxs-cog
-        span.text Parametre
+        span.text Profile
     li
-      a.logout(href="#")
+      a.logout(href="/admin/login")
         i.bx.bxs-log-out-circle
-        span.text Deconnexion
+        span.text logout
 //  SIDEBAR 
 //  CONTENT 
 section#content
   //  NAVBAR 
   nav
     i.bx.bx-menu
-    a.nav-link(href="#") Donneurs
+    //- a.nav-link(href="#") donors
     form(action="#")
       .form-input
         input(type="search", placeholder="Search...")
@@ -45,7 +45,7 @@ section#content
       i.bx.bxs-bell
       span.num 8
     a.profile(href="#")
-      img(src="img/people.png")
+      img(src="../images/adming.svg")
   //  NAVBAR 
   //  MAIN 
   main
@@ -58,67 +58,67 @@ section#content
           li
             i.bx.bx-chevron-right
           li
-            a.active(href="#") accueil
+            a.active(href="#") home
       a.btn-download(href="#")
         i.bx.bxs-cloud-download
-        span.text Telecharger le PDF
+        span.text download PDF
     ul.box-info
       li
         i.bx.bxs-calendar-check
         span.text
           h3 100
-          p Nouvelles demande
+          p appointment
       li
         i.bx.bxs-group
         span.text
           h3 4
-          p Donneurs
+          p Donors
       li
         i.bx.bxs-dollar-circle
         span.text
           h3 980
-          p Unite totale (ml)
+          p Total unit (ml)
     .table-data
       .order
         .head
-          h3 Nouvelles demandes
+          h3 Reciever
           i.bx.bx-search
           i.bx.bx-filter
         table
           thead
             tr
-              th Receveur
-              th Date de demande
-              th Forms
+              th Reciever
+              th Date of request
               th Actions
           tbody
             each receiver in receivers
               tr
                 td
-                  img(src="img/people.png")
+                  img(src="../images/girl.svg")
                   p= receiver.userName
                 td= receiver.createdAt.toLocaleDateString('fr-FR')
+                td
+                  form(action=`/admin/delete-receiver/${receiver.id}`, method='post')
+                    button.btn(type='submit' class='btn btn-danger') Supprimer
+    .table-data
+      .order
+        .head
+          h3  requests
+          i.bx.bx-search
+          i.bx.bx-filter
+        table
+          thead
+            tr
+              th Forms
+          tbody
+              tr
                 td
                   if (forms)
                     //-  problem here
                     //- each form in forms.filter(form => form.receiverId === receiver.id)
                     each form in forms
                       form(action=`/admin/forms/${form.id}/details`, method='get')
-                        button(type='submit' class='btn btn-primary') Voir
-
-
-                        //- td= form.fullName
-                        //- td= form.address
-                        //- td= form.email
-                        //- td= form.phoneNumber
-                        //- td= form.bloodGroup
-                        //- td= form.gender
-                        //- td= form.quantity
-                        //- td= form.status
-                        //- td
-                td
-                  form(action=`/admin/delete-receiver/${receiver.id}`, method='post')
-                    button.btn(type='submit' class='btn btn-danger') Supprimer
+                        button.btn(type='submit' class='btn btn-primary') Voir
       //- .todo
       //-   .head
       //-     h3 Donneurs
@@ -134,28 +134,40 @@ section#content
           thead
             tr
               th Donor
-              th Date de demande
-              th Forms
+              th Date of request
               th Actions
           tbody
             each donor in donors
               tr
                 td
-                  img(src="img/people.png")
+                  img(src="../images/girl.svg")
                   p= donor.userName
                 td= donor.createdAt.toLocaleDateString('fr-FR')
                 
+                td
+                  form(action=`/admin/delete-donor/${donor.id}`, method='post')
+                    button.btn(type='submit' class='btn btn-danger') Supprimer
+    .table-data
+      .order
+        .head
+          h3  appointments
+          i.bx.bx-search
+          i.bx.bx-filter
+        table
+          thead
+            tr
+              th appointments
+          tbody
+              tr
                 td
                   if (appointments)
                     each appointment in appointments
                       form(action=`/admin/appointments/${appointment.id}/details`, method='get')
                         button(type='submit' class='btn btn-primary') Voir
-                td
-                  form(action=`/admin/delete-donor/${donor.id}`, method='post')
-                    button.btn(type='submit' class='btn btn-danger') Supprimer
+
   //  MAIN 
 //  CONTENT 
-script(src="dashboard.js")
+script(src="../js/dashboard.js")
 script.
   const voirButtons = document.querySelectorAll('.voir-btn');
   voirButtons.forEach((button) => {

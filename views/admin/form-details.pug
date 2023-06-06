@@ -1,38 +1,91 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-    body 
-        h1 Form Details
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+//  Boxicons 
+link(href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css", rel="stylesheet")
+//  My CSS 
+link(rel="stylesheet", href="/css/dashboard.css")
+title blood-bank
+//  SIDEBAR 
+section#sidebar
+  a.brand(href="#")
+    span.text SaveARed 
+  ul.side-menu.top
+    li.active
+      a(href="#")
+        i.bx.bxs-dashboard
+        span.text form details
+//  SIDEBAR 
+//  CONTENT 
+section#content
+  //  NAVBAR 
+  nav
+    i.bx.bx-menu
+    form(action="#")
+      .form-input
+        input(type="search", placeholder="Rechercher...")
+        button.search-btn(type="submit")
+          i.bx.bx-search
+    input#switch-mode(type="checkbox", hidden)
+    label.switch-mode(for="switch-mode") 
+    a.notification(href="#")
+      i.bx.bxs-bell
+      span.num 8
+    a.profile(href="#")
+      img(src="../images/adming.svg")
+      
+      
+  //  NAVBAR 
+  //  MAIN 
+  main
+    .table-data
+      .order
+        .head
+          h3 form details 
+          i.bx.bx-search
+          i.bx.bx-filter
         table
+          tbody
             tr
-            th Full Name
-            td= form.fullName
-            tr
-            th Address
-            td= form.address
-            tr
-            th Email
-            td= form.email
-            tr
-            th Phone Number
-            td= form.phoneNumber
-            tr
-            th Blood Group
-            td= form.bloodGroup
-            tr
-            th Gender
-            td= form.gender
-            tr
-            th Quantity
-            td= form.quantity
-            tr
-            th Status
-            td= form.status
-        form(method="POST", action=`/admin/forms/${form.id}/accept`)
-          button(type="submit" name="accept" value="Accept") Accept
-        form(method="POST", action=`/admin/forms/${form.id}/delete`)
-          button(type="submit" name="delete" value="Delete") Delete
+              th Full Name
+              td= form.fullName
+              tr
+              th Address
+              td= form.address
+              tr
+              th Email
+              td= form.email
+              tr
+              th Phone Number
+              td= form.phoneNumber
+              tr
+              th Blood Group
+              td= form.bloodGroup
+              tr
+              th Gender
+              td= form.gender
+              tr
+              th Quantity
+              td= form.quantity
+              tr
+              th Status
+              td= form.status
+              tr
+              td
+                form(method="POST", action=`/admin/forms/${form.id}/accept`)
+                  button.btn(type="submit" name="accept" value="Accept") Accept
+                form(method="POST", action=`/admin/forms/${form.id}/delete`)
+                  button.btn(type="submit" name="delete" value="Delete") Delete
+                form(method="get", action=`/admin/dashboard`)
+                  button.btn(type="submit" ) back to dashboard
+
+  //  MAIN 
+//  CONTENT 
+script(src="../js/dashboard.js")
+script.
+  const voirButtons = document.querySelectorAll('.voir-btn');
+  voirButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const formId = button.dataset.formId;
+      window.location.href = `/admin/forms/${formId}/details`;
+    });
+  });

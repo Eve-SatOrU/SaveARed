@@ -7,7 +7,8 @@ link(rel="shortcut icon", href="./images/heartbeat-solid.svg", type="./images/x-
 //  font-awesome 
 link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css")
 //  Custom Css File Link 
-link(rel="stylesheet", href="./css/style.css")
+link(rel="stylesheet", href="../css/style.css")
+link(rel="stylesheet", href="../css/profile.css")
 //  Header Section Starts 
 .header
   a.logo(href="/")
@@ -28,49 +29,27 @@ link(rel="stylesheet", href="./css/style.css")
       a(href="/login" , class=(path === '/login' ? 'active' : '')) login
   #menu-btn.fas.fa-bars
 //  Header Section End 
-section.home
+//  Home Section starts 
+section.home#home
 header
-section.book
+section.about
+  h1.heading
+    span about
+    |  us
   .row
     .image
-      img(src="./images/register.svg", alt)
-    form(action="/register", method="post")
-      h3 register
-      label.label(for="userName") Username
-      input.box(type="text", name="userName", placeholder="Type your username", required)#userName
-      label.label(for="email") Email
-      input.box(type="email", name="email", placeholder="Type your email", required)#email
-      label.label(for="userPassword") Password
-      input.box(type="password", name="userPassword", placeholder="Type your password", required)#userPassword
-      label.label(for="sex") Sex
-      select#sex.box(name="sex")
-        option(value="male") Male
-        option(value="female") Female
-      label.label(for="dateOfBirth") Date of Birth
-      input.box(type="date", name="dateOfBirth", required)#dateOfBirth
-      label.label(for="phone") Phone
-      input.box(type="tel", name="phone", placeholder="Type your phone number", required)#phone
-      label.label(for="bloodGroup") Blood Group
-      select#bloodGroup.box(name="bloodGroup", required)
-        option(value="A+") A+
-        option(value="A-") A-
-        option(value="B+") B+
-        option(value="B-") B-
-        option(value="AB+") AB+
-        option(value="AB-") AB-
-        option(value="O+") O+
-        option(value="O-") O-
-      label.label(for="bloodGroup") userType
-      select#userType.box(name="userType", required)
-        option(value="donor") Donor
-        option(value="receiver") Receiver
-      button.btn(type="submit") Register
-      a(href="/login") 
-        h4 Already have an account?
+      img(src="./images/Doctors.svg", alt)
+    .content
+      //- h3 Saving lives through blood donation. Join us, make a difference
+      p "We are SaveARed, a passionate team dedicated to saving lives through blood donation. Our mission is to connect donors with those in need and build a community focused on making a positive impact.
+      p  With a strong commitment to our communities, we raise awareness about the critical importance of blood donation. Through partnerships and initiatives, we strive to ensure a sustainable blood supply for hospitals, clinics, and emergencies.
+      p Our dedicated team organizes blood drives, facilitates donor registration, and provides vital support services to both donors and recipients. Every donation has the power to make a difference, and we are devoted to fostering a culture of giving and compassion.
+      p  Join us on this life-saving journey. Together, we can create a healthier, stronger community. Thank you for being a part of our mission."
+      a.btn(href="/about")
+        | learn more 
+        span.fas.fa-chevron-right
+        |  
 
-
-
-//  Footer section Starts  
 section.footer
   .box-container
     .box

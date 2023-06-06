@@ -1,95 +1,197 @@
-//- meta(charset="UTF-8")
+//- meta(charset="utf-8")
+//- title Demande de sang
 //- meta(name="viewport", content="width=device-width,initial-scale=1")
-//- title login
-//- link(rel="stylesheet", href="css/index.css")
-//- link(rel="preconnect", href="https://fonts.googleapis.com")
-//- link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
-//- link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap", rel="stylesheet")
-//- link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css")
-//- .header
-//-   .container
-//-     .navbar
-//-       nav
-//-         ul#MenuItems
-//-           li.main-header__item
-//-             a(href="/", class=(path === '/' ? 'active' : '')) Home
-//-           li.main-header__item
-//-             a(href="/about", class=(path === '/about' ? 'active' : '')) About
-//-           if user
-//-             li.main-header__item
-//-               a( href=`/profile/${user.id}`,class=(path === '/profile' ? 'active' : '')) Profile
-//-             li.main-header__item
-//-               a(href=`/chat/${user.id}`) chat
-//-             li.main-header__item
-//-               a(href="/logout", class=(path === '/logout' ? 'active' : '')) Logout
-
-//-           else
-//-             li.main-header__item
-//-               a(href="/register", class=(path === '/register' ? 'active' : '')) Register
-//-             li.main-header__item
-//-               a(href="/login", class=(path === '/login' ? 'active' : '')) Login
-
-//-       a(href="/donate")
-//-         img(src="images/cart.png", width="30px", height="30px")
-//- // ----------------account-pabe-------------
-//- if (userType === 'receiver')
-//-   p Please fill out the form below:
-//-   form(method='POST' action='/receiver-form')
-//-     label(for='name') Name:
-//-     input(type='text' name='name' required)
-//-     label(for='reason') Reason for visit:
-//-     textarea(name='reason' required)
-//-     button(type='submit') Submit
-
-meta(charset="utf-8")
-title Demande de sang
+//- link(rel="stylesheet", href="css/damande de sange.css")
+//- .container
+//-   h1.form-title Demande de sang
+//-   form(action="/admin/form-submission", method="POST")
+//-     .main-user-info
+//-       .user-input-box
+//-         label(for="fullName") Nom et prenom
+//-         input#fullName(type="text", name="fullName", placeholder="Entrer votre nom et prenom")
+//-       .user-input-box
+//-         label(for="address") Adresse
+//-         input#address(type="text", name="address", placeholder="Entrer l\'adresse")
+//-       .user-input-box
+//-         label(for="email") Email
+//-         input#email(type="email", name="email", placeholder="Entrer l\'email")
+//-       .user-input-box
+//-         label(for="phoneNumber") Numero de telephone
+//-         input#phoneNumber(type="text", name="phoneNumber", placeholder="Entrer le numero de telephone ")
+//-       .user-input-box
+//-         label(for="quantity") Quantite du sang
+//-         input#quantity(type="text", name="quantity", placeholder="Enter quantite du sang  ")
+//-     .gender-details-box
+//-       span.gender-title Genre 
+//-       .gender-category
+//-         input#male(type="radio", name="gender")
+//-         label(for="male") Male
+//-         input#female(type="radio", name="gender")
+//-         label(for="female") Femelle
+//-     .blood-details-box
+//-       span.blood-title Groupe du sang 
+//-       .blood-groups
+//-         input#Oplus(type="radio", name="bloodGroup")
+//-         label(for="Oplus") O+
+//-         input#Ominus(type="radio", name="bloodGroup")
+//-         label(for="Ominus") O-
+//-         input#Aplus(type="radio", name="bloodGroup")
+//-         label(for="Aplus") A+
+//-         input#Aminus(type="radio", name="bloodGroup")
+//-         label(for="Aminus") A-
+//-         input#Bplus(type="radio", name="bloodGroup")
+//-         label(for="Bplus") B+
+//-         input#Bminus(type="radio", name="bloodGroup")
+//-         label(for="Bminus") B-
+//-         input#ABplus(type="radio", name="bloodGroup")
+//-         label(for="ABplus") AB+
+//-         input#ABminus(type="radio", name="bloodGroup")
+//-         label(for="ABminus") AB-
+//-     .form-submit-btn
+//-       input(type="submit", value="Demander")
+meta(charset="UTF-8")
+meta(http-equiv="X-UA-Compatible", content="IE=edge")
 meta(name="viewport", content="width=device-width,initial-scale=1")
-link(rel="stylesheet", href="css/damande de sange.css")
-.container
-  h1.form-title Demande de sang
-  form(action="/admin/form-submission", method="POST")
-    .main-user-info
-      .user-input-box
-        label(for="fullName") Nom et prenom
-        input#fullName(type="text", name="fullName", placeholder="Entrer votre nom et prenom")
-      .user-input-box
-        label(for="address") Adresse
-        input#address(type="text", name="address", placeholder="Entrer l\'adresse")
-      .user-input-box
-        label(for="email") Email
-        input#email(type="email", name="email", placeholder="Entrer l\'email")
-      .user-input-box
-        label(for="phoneNumber") Numero de telephone
-        input#phoneNumber(type="text", name="phoneNumber", placeholder="Entrer le numero de telephone ")
-      .user-input-box
-        label(for="quantity") Quantite du sang
-        input#quantity(type="text", name="quantity", placeholder="Enter quantite du sang  ")
-    .gender-details-box
-      span.gender-title Genre 
-      .gender-category
-        input#male(type="radio", name="gender")
-        label(for="male") Male
-        input#female(type="radio", name="gender")
-        label(for="female") Femelle
-    .blood-details-box
-      span.blood-title Groupe du sang 
-      .blood-groups
-        input#Oplus(type="radio", name="bloodGroup")
-        label(for="Oplus") O+
-        input#Ominus(type="radio", name="bloodGroup")
-        label(for="Ominus") O-
-        input#Aplus(type="radio", name="bloodGroup")
-        label(for="Aplus") A+
-        input#Aminus(type="radio", name="bloodGroup")
-        label(for="Aminus") A-
-        input#Bplus(type="radio", name="bloodGroup")
-        label(for="Bplus") B+
-        input#Bminus(type="radio", name="bloodGroup")
-        label(for="Bminus") B-
-        input#ABplus(type="radio", name="bloodGroup")
-        label(for="ABplus") AB+
-        input#ABminus(type="radio", name="bloodGroup")
-        label(for="ABminus") AB-
-    .form-submit-btn
-      input(type="submit", value="Demander")
+title SaveARed 
+//  Page Icon 
+link(rel="shortcut icon", href="./images/heartbeat-solid.svg", type="./images/x-icon")
+//  font-awesome 
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css")
+//  Custom Css File Link 
+link(rel="stylesheet", href="./css/style.css")
+//  Header Section Starts 
+.header
+  a.logo(href="/")
+    i.fas.fa-heartbeat
+    |  SaveARed
+  nav.navbar
+    a(href="/" , class=(path === '/' ? 'active' : '')) home
+    a(href="/about") about
+    a(href="/contact") contact us
+    if userType
+      a(href="/landing", class=(path === '/appointment-form' ? 'active' : '')) request
+      a(href="/logout") logout
+    else
+      a(href="/register" , class=(path === '/register' ? 'active' : '')) register
+      a(href="/login" , class=(path === '/login' ? 'active' : '')) login
+  #menu-btn.fas.fa-bars
+//  Header Section End 
+section.home
+header
+section.book
+  .row
+    form(action="/admin/form-submission", method="POST")
+      h1 Blood request
+      label.label(for="fullName") full name
+      input#fullName.box(type="text", name="fullName", placeholder="Entrer votre nom et prenom")
+      label.label(for="address") Address
+      input#address.box(type="text", name="address", placeholder="Entrer l\'adresse")
+      label.label(for="email") Email
+      input#email.box(type="email", name="email", placeholder="Entrer l\'email")
+      label.label(for="phoneNumber") Phone Number
+      input#phoneNumber.box(type="text", name="phoneNumber", placeholder="Entrer le numero de telephone ")
+      label.label(for="quantity") amount of blood
+      input#quantity.box(type="text", name="quantity", placeholder="Enter quantite du sang  ")
+      .gender-details-box
+        span.gender-title Genre 
+        .gender-category
+          input#male(type="radio", name="gender")
+          label(for="male") Male
+          input#female(type="radio", name="gender")
+          label(for="female") Femelle
+      .blood-details-box
+        span.blood-title Groupe du sang 
+        .blood-groups
+          input#Oplus(type="radio", name="bloodGroup")
+          label(for="Oplus") O+
+          input#Ominus(type="radio", name="bloodGroup")
+          label(for="Ominus") O-
+          input#Aplus(type="radio", name="bloodGroup")
+          label(for="Aplus") A+
+          input#Aminus(type="radio", name="bloodGroup")
+          label(for="Aminus") A-
+          input#Bplus(type="radio", name="bloodGroup")
+          label(for="Bplus") B+
+          input#Bminus(type="radio", name="bloodGroup")
+          label(for="Bminus") B-
+          input#ABplus(type="radio", name="bloodGroup")
+          label(for="ABplus") AB+
+          input#ABminus(type="radio", name="bloodGroup")
+          label(for="ABminus") AB-
+      .form-submit-btn
+        button.btn(type="submit", value="Demander")
 
+
+
+
+
+
+//  Footer section Starts  
+section.footer
+  .box-container
+    .box
+      h3 quick links
+      a(href="/")
+        i.fas.fa-chevron-right
+        |  home
+      a(href="/about")
+        i.fas.fa-chevron-right
+        |  about
+      a(href="contact")
+        i.fas.fa-chevron-right
+        |  contact us
+    .box
+      h3 our services
+      a(href="#")
+        i.fas.fa-chevron-right
+        |  Free Checkups
+      a(href="#")
+        i.fas.fa-chevron-right
+        |  24/7 Ambulance
+      a(href="#")
+        i.fas.fa-chevron-right
+        |  Total Care
+    .box
+      h3 contact info
+      a(href="#")
+        i.fas.fa-phone
+        |  +123-456-7859
+      a(href="#")
+        i.fas.fa-phone
+        |  +987-654-3210
+      a(href="#")
+        i.fas.fa-envelope
+        |  SaveARed.info.com
+      a(href="#")
+        i.fas.fa-envelope
+        |  SaveARed.info.@gmail.com
+      a(href="#")
+        i.fas.fa-map-marker-alt
+        |  setif, setif - 1000
+    .box
+      h3 follow us
+      a(href="#")
+        i.fab.fa-facebook-f
+        |  facebook
+      a(href="#")
+        i.fab.fa-twitter
+        |  twitter
+      a(href="#")
+        i.fab.fa-linkedin
+        |  linkedin
+      a(href="#")
+        i.fab.fa-instagram
+        |  instagram
+      a(href="#")
+        i.fab.fa-youtube
+        |  youtube
+      a(href="#")
+        i.fab.fa-pinterest
+        |  pinterest
+  .credit
+    | created by 
+    span Eve SatOrU
+    |  | all right reserved
+//  Footer section End  
+//  custom js file link  
+script(src="js/script.js")

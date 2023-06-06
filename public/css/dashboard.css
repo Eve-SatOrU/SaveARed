@@ -19,16 +19,20 @@ li {
 	--lato: 'Lato', sans-serif;
 
 	--light: #F9F9F9;
-	--blue: #3C91E6;
+	--blue:#b11526 ;
 	--light-blue: #CFE8FF;
 	--grey: #eee;
 	--dark-grey: #AAAAAA;
 	--dark: #342E37;
-	--red: #DB504A;
-	--yellow: #FFCE26;
+	--red: #b11526;
+	--yellow: #b11526;
 	--light-yellow: #FFF2C6;
-	--orange: #FD7238;
+	--orange: #b11526;
 	--light-orange: #FFE0D3;
+	--green: #A20000; 
+    --black: #444; 
+    --light-color: #777; 
+    --border: .1rem solid var(--dark);
 }
 
 html {
@@ -515,11 +519,71 @@ body {
 #content main .table-data .todo .todo-list li:last-child {
 	margin-bottom: 0;
 }
+#content main .table-data .todo {
+	flex-grow: 1;
+	flex-basis: 300px;
+}
+#content main .table-data .todo .todo-list {
+	width: 100%;
+}
+#content main .table-data .todo .todo-list li {
+	width: 100%;
+	margin-bottom: 16px;
+	background: var(--grey);
+	border-radius: 10px;
+	padding: 14px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#content main .table-data .todo .todo-list li .bx {
+	cursor: pointer;
+}
+#content main .table-data .todo .todo-list li.completed {
+	border-left: 10px solid var(--blue);
+}
+#content main .table-data .todo .todo-list li.not-completed {
+	border-left: 10px solid var(--orange);
+}
+#content main .table-data .todo .todo-list li:last-child {
+	margin-bottom: 0;
+}
+
+
+/* btn */
+
+.btn{
+    display: inline-block;
+	text-align: center;
+    margin-top: 1rem;
+    padding: .5rem;
+    padding-left: 1rem;
+    border: var(--border);
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    color: var(--green);
+    cursor: pointer;
+    font-size: 0.9rem;
+    background: #fff;
+}
+.btn span{
+    padding: .7rem 1rem;
+    border-radius: .5rem;
+    background: var(--green);
+    color: #fff;
+    margin-left: .5rem;
+}
+.btn:hover{
+    background: var(--green);
+    color: #fff;
+}
+.btn:hover span{
+    color: var(--green);
+    background: #fff;
+    margin-left: 1rem;
+}
 /* MAIN */
 /* CONTENT */
-
-
-
 
 
 
@@ -589,4 +653,9 @@ body {
 	#content main .table-data .todo .todo-list {
 		min-width: 420px;
 	}
+	#content main .table-data .todo .todo-list {
+		min-width: 420px;
+	}
 }
+
+

@@ -3,8 +3,9 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const Request = require('../models/request');
 const Appointment = require('../models/appointment');
-exports.getindex =(req,res,next)=>{
-    res.render('index',{title:'index'});
+exports.getindex = async(req, res, next) => {
+  const user = req.session.user;
+  res.render('index', { user });
 }
 //hashing password
 User.beforeCreate(async (user) => {
@@ -19,14 +20,14 @@ exports.getRegister = (req, res, next) => {
     });
   };
   exports.postRegister = async (req, res, next) => {
-    const { userName, userPassword, email, userType, sexe, dateOfBirth, phone, bloodGroup } = req.body;
+    const { userName, userPassword, email, userType, sex, dateOfBirth, phone, bloodGroup } = req.body;
     try {
       const user = await User.create({
         userName,
         userPassword,
         email,
         userType,
-        sexe,
+        sex,
         dateOfBirth,
         phone,
         bloodGroup
@@ -58,15 +59,18 @@ exports.getRegister = (req, res, next) => {
       req.session.userName = userName;
       req.session.userType = 'donor';
       req.session.userId = user.id; // Store user ID in session
-      res.redirect('/appointment-form');
+      // res.redirect('/appointment-form');
+      res.redirect('/');
     } else {
       req.session.user = user;
       req.session.userName = userName;
       req.session.userType = 'receiver';
       req.session.userId = user.id; // Store user ID in session
-      res.redirect('/landing');
+      res.redirect('/');
+      // res.redirect('/landing');
     }
   });
+  // profile user 
       exports.getprofile = async (req, res) => {
       const user = await User.findOne({ where: { id: req.params.id } });
       if (!user) {
@@ -81,15 +85,7 @@ exports.getRegister = (req, res, next) => {
       req.session.destroy();
       res.redirect('/');
   };  
-//reciever form 
-// exports.postlanding=(req, res,next) => {
-//   console.log('Session:', req.session); // Add this line
-//   if (req.session.userType === 'receiver') {
-//     res.render('reciever-landing', { userName: req.session.userName });
-//   }else{
-//     res.redirect('/login');
-//   }
-// };
+
 // reciever form
 exports.getlanding = (req, res, next) => {
   if (req.session && req.session.userType === 'receiver') {
@@ -128,8 +124,17 @@ exports.getAppointmentHistory = async (req, res) => {
   if (req.session && req.session.userType === 'donor') {
     const id = req.params.id;
     const appointments = await Appointment.findAll({ where: { id } });
-    res.render('appointment-history', { appointments });
+    res.render('appointment-history', { appointments  });
   } else {
     res.redirect('/login');
   }
 };
+
+exports.getcontact = async(req, res, next) => {
+  const user = req.session.user;
+  res.render('contact', { user });
+}
+exports.getabout = async(req, res, next) => {
+  const user = req.session.user;
+  res.render('about', { user });
+}
