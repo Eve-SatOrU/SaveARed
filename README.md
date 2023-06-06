@@ -42,3 +42,5 @@ Contributions are welcome! If you find any issues or want to add new features, p
 ## License
 
 [MIT License](https://opensource.org/licenses/MIT)
+## Contact
+Eve-SatOrU
