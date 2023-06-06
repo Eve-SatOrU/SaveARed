@@ -19,6 +19,7 @@ link(rel="stylesheet", href="./css/style.css")
     a(href="/contact") contact us
     if userType
       a(href="/appointment-form", class=(path === '/donor-landing' ? 'active' : '')) appointment
+      a( href=`/profile/${user.id}`,class=(path === '/profile' ? 'active' : '')) Profile
       a(href="/logout") logout
     else
       a(href="/register" , class=(path === '/register' ? 'active' : '')) register
