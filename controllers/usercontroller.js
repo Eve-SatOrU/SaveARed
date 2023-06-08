@@ -96,6 +96,7 @@ exports.getlanding = (req, res, next) => {
     res.redirect('/login');
   }
 };
+
 //see all history  but it didn't work i wanna come later
 exports.getFormHistory = async (req, res) => {
   if (req.session && req.session.userType === 'receiver') {
